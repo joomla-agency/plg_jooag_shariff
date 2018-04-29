@@ -7,6 +7,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+ /**
+ * @modified   for JooAg Shariff
+ * @author     Joomla Agentur <Ufuk Avcu> <info@joomla-agentur.de> 
+ * @link       https://joomla-agentur.de
+ **/
+ 
 defined('JPATH_BASE') or die;
 
 /**

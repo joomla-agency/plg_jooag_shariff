@@ -6,6 +6,12 @@
  * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
+ 
+  /**
+ * @modified   for JooAg Shariff
+ * @author     Joomla Agentur <Ufuk Avcu> <info@joomla-agentur.de> 
+ * @link       https://joomla-agentur.de
+ **/
 
 defined('JPATH_PLATFORM') or die;
 
