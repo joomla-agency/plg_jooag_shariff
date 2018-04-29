@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset name="domains" label="PLG_JOOAG_SHARIFF_TAB_GENERAL">
+			<field name="custom_domains" type="input" label="PLG_JOOAG_SHARIFF_DATA_URL_CUSTOM_INPUT"/>		
+	</fieldset>
+</form>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.0" type="plugin" method="upgrade" group="system">
+	<name>PLG_JOOAG_SHARIFF</name>
+	<author>Ufuk Avcu</author>
+	<creationDate>25.04.2018</creationDate>
+	<copyright>Copyright (C) 2009 - 2018 Joomla Agency. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>info@joomla-agentur.de</authorEmail>
+	<authorUrl>www.joomla-agentur.de</authorUrl>
+	<version>4.0.0</version>
+	<description>PLG_JOOAG_SHARIFF_XML_DESCRIPTION</description>
+
+	<scriptfile>script.jooag_shariff.php</scriptfile>
+	
+	<files>
+		<folder>backend</folder>
+		<folder>fields</folder>
+		<folder>language</folder>
+		<filename plugin="jooag_shariff">jooag_shariff-services.xml</filename>
+		<filename plugin="jooag_shariff">jooag_shariff-customDomains.xml</filename>
+		<filename plugin="jooag_shariff">jooag_shariff.php</filename>
+		<filename plugin="jooag_shariff">README.md</filename>
+	</files>
+
+	<media folder="media" destination="plg_jooag_shariff">
+		<folder>assets</folder>
+	</media>
+
+	<config>
+		<fields name="params" addfieldpath="/plugins/system/jooag_shariff/fields">
+
+			<fieldset name="PLG_JOOAG_SHARIFF_SETTINGS" label="PLG_JOOAG_SHARIFF_SETTINGS">
+				<field type="jooagsystem" name="jooagsystem"/>
+				<field name="services" type="subform"
+					   formsource="plugins/system/jooag_shariff/jooag_shariff-services.xml" min="0" max="25"
+					   multiple="true" layout="joomla.form.field.subform.repeatable-table" groupByFieldset="true"
+					   label="PLG_JOOAG_SHARIFF_SETTINGS" description="" />
+			</fieldset>
+			<fieldset name="PLG_JOOAG_SHARIFF_OUTPUT" label="PLG_JOOAG_SHARIFF_OUTPUT">
+				<field name="output_position_line" type="line"/>
+				<field name="output_position" label="PLG_JOOAG_SHARIFF_OUTPUT_POSITION" default="BeforeDisplay" type="list" multiple="true">
+					<option value="BeforeDisplay">PLG_JOOAG_SHARIFF_OUTPUT_POSITION_BEFRORE_DISPLAY</option>
+					<option value="AfterDisplay">PLG_JOOAG_SHARIFF_OUTPUT_POSITION_AFTER_DISPLAY</option>
+				</field>
+				<field name="data_orientation" label="PLG_JOOAG_SHARIFF_ORIENATATION" type="list" class="btn-group"
+					   default="horizontal">
+					<option value="horizontal">PLG_JOOAG_SHARIFF_ORIENATATION_HORIZONTAL</option>
+					<option value="vertical">PLG_JOOAG_SHARIFF_ORIENATATION_VERTICAL</option>
+				</field>
+				<field name="data_theme" label="PLG_JOOAG_SHARIFF_THEME" type="list" class="btn-group" default="color">
+					<option value="color">PLG_JOOAG_SHARIFF_THEME_COLOR</option>
+					<option value="grey">PLG_JOOAG_SHARIFF_THEME_GREY</option>
+					<option value="white">PLG_JOOAG_SHARIFF_THEME_WHITE</option>
+				</field>
+				
+				<field name="data_style" label="PLG_JOOAG_SHARIFF_STYLE" type="list" class="btn-group" default="color">
+					<option value="standard">PLG_JOOAG_SHARIFF_STYLE_STANDARD</option>
+					<option value="icon">PLG_JOOAG_SHARIFF_STYLE_ICON</option>
+					<option value="icon-count">PLG_JOOAG_SHARIFF_STYLE_ICON_COUNT</option>
+				</field>
+				
+				data-button-style
+				<field type="line" name="com_content_line"/>
+				<field name="com_content" label="PLG_JOOAG_SHARIFF_JOOMLA_CONTENT" type="radio" class="btn-group"
+					   default="1">
+					<option value="0">PLG_JOOAG_SHARIFF_DISABLED</option>
+					<option value="1">PLG_JOOAG_SHARIFF_ENABLED</option>
+				</field>
+				<field name="com_content_category_assignment" showon="com_content:1"
+					   label="PLG_JOOAG_SHARIFF_CATEGORY_ASSIGNMENT" type="list" class="btn-group" default="1">
+					<option value="0">PLG_JOOAG_SHARIFF_SHOW_NOWHERE</option>
+					<option value="1">PLG_JOOAG_SHARIFF_SHOW_ON_ALL</option>
+					<option value="2">PLG_JOOAG_SHARIFF_SHOW_ON_SELECTED</option>
+					<option value="3">PLG_JOOAG_SHARIFF_SHOW_ON_ALL_EXPECTED_SELECTED</option>
+				</field>
+				<field name="com_content_category_select" showon="com_content:1[AND]com_content_category_assignment:2,3" type="category" multiple="true"
+					   extension="com_content" label="PLG_JOOAG_SHARIFF_CATEGORY_SELECT"/>		   
+				<field name="com_content_menu_assignment" showon="com_content:1"
+					   label="PLG_JOOAG_SHARIFF_MENU_ASSIGNMENT" type="list" class="btn-group" default="1">
+					<option value="0">PLG_JOOAG_SHARIFF_SHOW_NOWHERE</option>
+					<option value="1">PLG_JOOAG_SHARIFF_SHOW_ON_ALL</option>
+					<option value="2">PLG_JOOAG_SHARIFF_SHOW_ON_SELECTED</option>
+					<option value="3">PLG_JOOAG_SHARIFF_SHOW_ON_ALL_EXPECTED_SELECTED</option>
+				</field>
+				<field name="com_content_menu_select" showon="com_content:1[AND]com_content_menu_assignment:2,3" type="menuitem" multiple="true"
+					   label="PLG_JOOAG_SHARIFF_MENU_SELECT"/>
+				<field type="line" name="com_everywhere_line"/>
+				<field name="com_everywhere" label="PLG_JOOAG_OUTPUT_EVERYWHERE" type="radio" class="btn-group"
+					   default="0">
+					<option value="0">PLG_JOOAG_SHARIFF_DISABLED</option>
+					<option value="1">PLG_JOOAG_SHARIFF_ENABLED</option>
+				</field>
+				<field name="com_everywhere_menu_assignment" showon="com_everywhere:1"
+					   label="PLG_JOOAG_SHARIFF_MENU_ASSIGNMENT" type="list" class="btn-group" default="1">
+					<option value="0">PLG_JOOAG_SHARIFF_SHOW_NOWHERE</option>
+					<option value="1">PLG_JOOAG_SHARIFF_SHOW_ON_ALL</option>
+					<option value="2">PLG_JOOAG_SHARIFF_SHOW_ON_SELECTED</option>
+					<option value="3">PLG_JOOAG_SHARIFF_SHOW_ON_ALL_EXPECTED_SELECTED</option>
+				</field>
+				<field name="com_everywhere_menu_select" showon="com_everywhere:1[AND]com_everywhere_menu_assignment:2,3" type="menuitem" multiple="true"
+					   label="PLG_JOOAG_SHARIFF_MENU_SELECT"/>
+				<field type="spacer" name="myspaceroutput_everywhere" showon="com_everywhere:1"
+					   label="PLG_JOOAG_OUTPUT_EVERYWHERE_DESC" class="alert alert-info"/>
+
+				<field type="line" name="shorttag_use_line"/>
+				<field name="com_shorttag" label="PLG_JOOAG_OUTPUT_SHORTTAG_MODE" type="radio" class="btn-group"
+					   default="1">
+					<option value="0">PLG_JOOAG_SHARIFF_DISABLED</option>
+					<option value="1">PLG_JOOAG_SHARIFF_ENABLED</option>
+				</field>
+				<field type="spacer" name="shorttag_use_line_desc" showon="com_shorttag:1"
+					   label="PLG_JOOAG_OUTPUT_SHORTTAG_MODE_DESC" class="alert alert-info"/>
+			</fieldset>
+			<fieldset name="PLG_JOOAG_SHARIFF_COUNTER" label="PLG_JOOAG_SHARIFF_COUNTER">
+				<field name="shariff_counter" label="PLG_JOOAG_SHARIFF_SHARE_COUNTER_BACKEND" type="list"
+					   class="btn-group" default="0">
+					<option value="0">PLG_JOOAG_SHARIFF_DISABLED</option>
+					<option value="1">PLG_JOOAG_SHARIFF_ENABLED</option>
+				</field>
+				<field name="cache_time" showon="shariff_counter:1" type="number" default="60"
+					   label="PLG_JOOAG_SHARIFF_CACHE_TIME" step="10"/>
+				<field name="client_timeout" showon="shariff_counter:1" type="number" default="5"
+					   label="PLG_JOOAG_SHARIFF_CACHE_TIMEOUT" step="1"/>
+				<field name="cache" label="PLG_JOOAG_SHARIFF_CACHE_SETTINGS" showon="shariff_counter:1" type="list" class="btn-group" default="0">
+					<option value="0">PLG_JOOAG_SHARIFF_DISABLED</option>
+					<option value="1">PLG_JOOAG_SHARIFF_ENABLED</option>
+				</field>
+				<field name="cache_handler" showon="cache:1[AND]shariff_counter:1" type="cachehandler"
+					   label="PLG_JOOAG_SHARIFF_CACHE_HANDLER"/>   
+				<field name="data_url" label="PLG_JOOAG_SHARIFF_DATA_URL" showon="shariff_counter:1" type="list" class="btn-group" default="0">
+					<option value="0">PLG_JOOAG_SHARIFF_DATA_URL_AUTOMATIC</option>
+					<option value="1">PLG_JOOAG_SHARIFF_DATA_URL_CUSTOM</option>
+				</field>
+				<field name="data_url_custom" type="subform" showon="data_url:1[AND]shariff_counter:1"
+					   formsource="plugins/system/jooag_shariff/jooag_shariff-customDomains.xml" min="0" max="20"
+					   multiple="true" layout="joomla.form.field.subform.repeatable-table" groupByFieldset="true"
+					   label="Service" description=""/>
+				<field name="data_url_desc" type="spacer" showon="data_url:1[AND]shariff_counter:1"
+					   label="PLG_JOOAG_SHARIFF_DATA_URL_CUSTOM_DESC" class="alert alert-info"/>
+			</fieldset>
+			<fieldset name="PLG_JOOAG_SHARIFF_EXPERTS" label="PLG_JOOAG_SHARIFF_EXPERTS">
+				<field name="assets_line" type="line"/>
+				<field name="shariffcss" type="filelist" default="shariff.complete.css"
+					   label="PLG_JOOAG_SHARIFF_ASSETS_CSS" directory="media/plg_jooag_shariff/assets" filter="css"
+					   hide_none="false" hide_default="true"/>
+				<field name="shariffjs" type="filelist" default="shariff.complete.js" label="PLG_JOOAG_SHARIFF_ASSETS_JS"
+					   directory="media/plg_jooag_shariff/assets" filter="js" hide_none="false" hide_default="true"/>
+				<field name="labelcssjs" type="spacer" label="PLG_JOOAG_SHARIFF_ASSETS_DESC" class="alert alert-info"/>
+				<field name="php_backend_line" type="line"/>
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+		<server type="extension" priority="2" name="JooAg Shariff Update">https://joomla-agentur.de/extensions/plg-jooag-shariff4.xml</server>
+	</updateservers>
+</extension>
