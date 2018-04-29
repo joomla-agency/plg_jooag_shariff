@@ -1,7 +1,8 @@
 <?php
 /**
- * @package    JooAg_Shariff
- * @author     Joomla Agentur <info@joomla-agentur.de> <www.joomla-agentur.de>
+ * @package    JooAg Shariff
+ * @author     Joomla Agentur <Ufuk Avcu> <info@joomla-agentur.de> 
+ * @link       https://joomla-agentur.de
  * @copyright  Copyright (c) 2009 - 2018 Joomla-Agentur All rights reserved.
  * @license    GNU General Public License version 2 or later;
  * @description A small Plugin to share Social Links without compromising their privacy!
@@ -222,7 +223,13 @@ class plgSystemJooag_Shariff extends JPlugin
 		}
 
 		JHtml::_('jquery.framework');
+<<<<<<< HEAD
 		$doc = JFactory::getDocument();
+=======
+		$doc->addStyleSheet(JURI::root().'media/plg_jooag_shariff/assets/'.$this->params->get('shariffcss'));
+		$doc->addScript(JURI::root().'media/plg_jooag_shariff/assets/'.$this->params->get('shariffjs'));
+		$doc->addScriptDeclaration('jQuery(document).ready(function() {var buttonsContainer = jQuery(".shariff");new Shariff(buttonsContainer);});');
+>>>>>>> master
 
 		if ($this->params->get('shariffcss') != '-1')
 		{

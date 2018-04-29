@@ -53,7 +53,7 @@ class PlgSystemJooag_shariffInstallerScript
 
 			if(version_compare('4.0', $version) > 0)
 			{
-				$error ='Old JooAG Shariff Plugin detected: We found the Version '.$version.' of our Plugin. Please uninstall the old version and install the new Plugin again. This is a major Release and you need to setup & configure the Plugin again.';
+				$error ='Old JooAG Shariff Plugin detected: We found the Version '.$version.' of our Plugin. Please uninstall the old version and install the new Plugin again. Please also note your credentials for Facebook API for example. After uninstallation they are also gone. Also Download the latest Version of the Plugin <a href="https://github.com/joomla-agency/plg_jooag_shariff/releases" target="_blank">here</a> before you uninstall the Plugin, because no more updates are displayed after plugin uninstallation. This is a major Release and you need to setup & configure the Plugin again.';
 				JLog::add($error, JLog::WARNING, 'jerror');
 				$errorCount++;
 			}

@@ -2,8 +2,11 @@
 <h3>The 1-Click-Social-Button with privacy in mind</h3>
 This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to share their favorite content without compromising their privacy.
 
+<b>Help with translation:</b>
+* https://www.transifex.com/jooag/plg_jooag_shariff/
+
 <b>System Requirements:</b>
-* Joomla 3.7+ 
+* Joomla 3.8+ 
 * PHP 5.6, 7 or 7.1 (if you use the Counter)
 
 <b>Plugin features:</b>
@@ -35,25 +38,43 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 - [x] v3.3.0 - Shorttag parameter support for custom icons, backend integration and other shariff settings
 - [x] v3.3.0 - Rearrange the Plugin Options and simplify settings
 - [ ] Ongoing integration of updates from Shariff Libraray & Backend
-- [ ] Integration for more Componentes e.g. Zoo, K2, SobiPro, Seblod, JoomGallery
+<<<<<<< HEAD
+- [ ] More Options for Info and Print soon
 
 <h2>Update Instructions:</h2>
-* Alle previous versions before 3.3
+
+* Alle previous versions before 4.0
+=======
+- [ ] Info Page Urls and Print Service Additions
+
+<h2>Update Instructions:</h2>
+* All previous versions before 4.0.0
+>>>>>>> master
   * You need to uninstall the old Jooag Shariff Plugin
   * Make a fresh install and do the needed Settings again, please.
-* V3.1.x -> V3.2.x
-  * Everything fine! Nothing todo.
-* V3.0.6 -> V3.1.x
-  * Delete the assets Folder inside the Plugin.
-* Before V3.0.6
-  * Plugin Settings need to be revisited. 
-* Before V3.0.3
-  * Delete this folder joomla-root/plugins/system/jooag_shariff/backend/cache
-  * Not so important to delete this folder. It's not needed anymore, because we use the Joomla Core Cache folder.
-* Before V3.0.0 Stable
-  * Delete the old Plugin and install the new one
 
 <h2>Documentation:</h2>
+<h4>First steps</h4>
+
+* Install the latest Plugin Version.
+<<<<<<< HEAD
+* Login into your Joomla Backend and go to Extensions->Plugins and find the "Jooag Shariff" Plugin.
+* Open the Plugin and activate it.
+* Goto the "Services" Tab and add your needed services.
+* Goto the "Output" Tab and go through the settings.
+=======
+
+* Login into your Joomla Backend and go to Extensions->Plugins and find the "Jooag Shariff" Plugin.
+
+* Open the Plugin and activate it.
+
+* Goto the "Services" Tab and add your needed services.
+
+* Goto the "Output" Tab and go through the settings.
+
+>>>>>>> master
+* Goto the "Counter" Tab and activate the Counter, if you like to see the count of the shares.
+
 <h4>Share Counter:</h4>
 It's really important for the counter to use the url only with www or non-www.
 <h6>To redirect www to non-www do the following steps:</h6>
@@ -78,11 +99,15 @@ RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 </p>
 
 <h4>Use this Plugin as a Shariff Joomla Modul</h4>
-* You can put into your content or "Custom Html" module the following shortcode and set the Option "Prepare Content" to yes! 
+
+* You can put into your content or "Custom Html" module the following shortcode and set the Option "Prepare Content" to yes!
+
  ```
 {shariff}
 ```
+
 * You can also override the Global Plugin Settings for theme and orientation like this:
+
 ```
  {shariff theme=color}
  {shariff theme=grey}
@@ -90,11 +115,14 @@ RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
  {shariff orientation=horizontal}
  {shariff orientation=vertical}
 ```
+
 * You can combine this tags, too:
+
 ```
  {shariff theme=color orientation=horizontal}
  {shariff theme=white orientation=vertical}
 ```
+
 * Theme variables
  * color
  * grey
@@ -106,18 +134,16 @@ RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 <h2>Credits:</h2>
 Developed by http://joomla-agentur.de
 
-Thanks to Heise.de for this development https://github.com/heiseonline/shariff
+Thanks Heise.de for this solution  https://github.com/heiseonline/shariff
 
-and for Joomla User Group Hamburg http://jug-hamburg.de/ (the main reason for this plugin :-)
+Thanks Joomla! our lovely CMS https://joomla.org
+
+and for Joomla! Joomla User Group Hamburg http://jug-hamburg.de/ (the main reason for this plugin :-)
 
 <h2>Many thanks for your help and support!</h2>
 
 * David Yardin - https://www.djumla.de/
-
 * Robert Deutz - http://rdbs.de/
-
 * Tobias Zulauf - https://www.jah-tz.de/
-
 * Viktor Vogel - https://joomla-extensions.kubik-rubik.de/
-
 * Yves Hoppe - https://compojoom.com/

@@ -2,12 +2,12 @@
 <extension version="4.0" type="plugin" method="upgrade" group="system">
 	<name>PLG_JOOAG_SHARIFF</name>
 	<author>Ufuk Avcu</author>
-	<creationDate>25.04.2018</creationDate>
+	<creationDate>29.04.2018</creationDate>
 	<copyright>Copyright (C) 2009 - 2018 Joomla Agency. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomla-agentur.de</authorEmail>
 	<authorUrl>www.joomla-agentur.de</authorUrl>
-	<version>4.0.0</version>
+	<version>4.0.1</version>
 	<description>PLG_JOOAG_SHARIFF_XML_DESCRIPTION</description>
 
 	<scriptfile>script.jooag_shariff.php</scriptfile>
@@ -151,6 +151,6 @@
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" priority="2" name="JooAg Shariff Update">https://joomla-agentur.de/extensions/plg-jooag-shariff4.xml</server>
+		<server type="extension" priority="2" name="JooAg Shariff Update">https://joomla-agentur.de/index.php?option=com_ars&view=update&task=stream&format=xml&id=1</server>
 	</updateservers>
 </extension>
