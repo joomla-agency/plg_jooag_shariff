@@ -223,13 +223,11 @@ class plgSystemJooag_Shariff extends JPlugin
 		}
 
 		JHtml::_('jquery.framework');
-<<<<<<< HEAD
+		
 		$doc = JFactory::getDocument();
-=======
 		$doc->addStyleSheet(JURI::root().'media/plg_jooag_shariff/assets/'.$this->params->get('shariffcss'));
 		$doc->addScript(JURI::root().'media/plg_jooag_shariff/assets/'.$this->params->get('shariffjs'));
 		$doc->addScriptDeclaration('jQuery(document).ready(function() {var buttonsContainer = jQuery(".shariff");new Shariff(buttonsContainer);});');
->>>>>>> master
 
 		if ($this->params->get('shariffcss') != '-1')
 		{
