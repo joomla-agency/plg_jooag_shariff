@@ -52,14 +52,11 @@
 					<option value="grey">PLG_JOOAG_SHARIFF_THEME_GREY</option>
 					<option value="white">PLG_JOOAG_SHARIFF_THEME_WHITE</option>
 				</field>
-				
 				<field name="data_style" label="PLG_JOOAG_SHARIFF_STYLE" type="list" class="btn-group" default="color">
 					<option value="standard">PLG_JOOAG_SHARIFF_STYLE_STANDARD</option>
 					<option value="icon">PLG_JOOAG_SHARIFF_STYLE_ICON</option>
 					<option value="icon-count">PLG_JOOAG_SHARIFF_STYLE_ICON_COUNT</option>
 				</field>
-				
-				data-button-style
 				<field type="line" name="com_content_line"/>
 				<field name="com_content" label="PLG_JOOAG_SHARIFF_JOOMLA_CONTENT" type="radio" class="btn-group"
 					   default="1">
