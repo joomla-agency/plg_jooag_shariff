@@ -131,7 +131,7 @@ RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
  * vertical
  
 <h2>Credits:</h2>
-Developed by http://joomla-agentur.de
+Developed by https://joomla-agentur.de
 
 Thanks Heise.de for this solution  https://github.com/heiseonline/shariff
 
