@@ -57,7 +57,6 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 <h4>First steps</h4>
 
 * Install the latest Plugin Version.
-<<<<<<< HEAD
 * Login into your Joomla Backend and go to Extensions->Plugins and find the "Jooag Shariff" Plugin.
 * Open the Plugin and activate it.
 * Goto the "Services" Tab and add your needed services.
