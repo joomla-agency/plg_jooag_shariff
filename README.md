@@ -137,12 +137,12 @@ Thanks Heise.de for this solution  https://github.com/heiseonline/shariff
 
 Thanks Joomla! our lovely CMS https://joomla.org
 
-and for Joomla! Joomla User Group Hamburg http://jug-hamburg.de/ (the main reason for this plugin :-)
+and for Joomla! Joomla User Group Hamburg https://jug-hamburg.de/ (the main reason for this plugin :-)
 
 <h2>Many thanks for your help and support!</h2>
 
-* David Yardin - https://www.djumla.de/
-* Robert Deutz - http://rdbs.de/
+* David Jardin - https://www.djumla.de/
+* Robert Deutz - https://rdbs.de/
 * Tobias Zulauf - https://www.jah-tz.de/
 * Viktor Vogel - https://joomla-extensions.kubik-rubik.de/
 * Yves Hoppe - https://compojoom.com/
