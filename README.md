@@ -49,7 +49,7 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 
 <h2>Update Instructions:</h2>
 * All previous versions before 4.0.0
->>>>>>> master
+
   * You need to uninstall the old Jooag Shariff Plugin
   * Make a fresh install and do the needed Settings again, please.
 
