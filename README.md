@@ -38,7 +38,6 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 - [x] v3.3.0 - Shorttag parameter support for custom icons, backend integration and other shariff settings
 - [x] v3.3.0 - Rearrange the Plugin Options and simplify settings
 - [ ] Ongoing integration of updates from Shariff Libraray & Backend
-<<<<<<< HEAD
 - [ ] More Options for Info and Print soon
 
 <h2>Update Instructions:</h2>
@@ -71,7 +70,6 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 
 * Goto the "Output" Tab and go through the settings.
 
->>>>>>> master
 * Goto the "Counter" Tab and activate the Counter, if you like to see the count of the shares.
 
 <h4>Share Counter:</h4>
