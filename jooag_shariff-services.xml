@@ -39,7 +39,13 @@
 		<field name="data-mail-body" showon="services:Mail" type="input" label="PLG_JOOAG_SHARIFF_MAIL_BODY" />
 		<field type="spacer" showon="services:Mail" name="data-mail-spacer" label="PLG_JOOAG_SHARIFF_MAIL_DESC" class="alert alert-error" />
 		<field name="special_data-info-url" showon="services:Info" type="modal_article" label="PLG_JOOAG_SHARIFF_INFO_BUTTON_ARTICLE"/>
+		<field name="data-info-display" showon="services:Info" label="PLG_JOOAG_SHARIFF_INFO_DISPLAY" type="list" class="btn-group" default="1">
+			<option value="blank">PLG_JOOAG_SHARIFF_INFO_DISPLAY_BLANK</option>
+			<option value="popup">PLG_JOOAG_SHARIFF_INFO_DISPLAY_POPUP</option>
+			<option value="self">PLG_JOOAG_SHARIFF_INFO_DISPLAY_SELF</option>
+		</field>
 		<field type="spacer" showon="services:Info" name="spacer_LABEL_INFO_BUTTON" label="PLG_JOOAG_SHARIFF_INFO_DESC"  class="alert alert-info" />
+		<field type="spacer" showon="services:Info" name="spacer_LABEL_INFO_BUTTON_ATTENTION" label="PLG_JOOAG_SHARIFF_INFO_ATTENTION"  class="alert alert-danger" />
 		<field name="data-flattr-category" showon="services:Flattr" type="input" label="PLG_JOOAG_SHARIFF_FLATTR_CATEGORY"/>
 		<field name="data-flattr-user" showon="services:Flattr" type="input" label="PLG_JOOAG_SHARIFF_FLATTR_USER"/>
 	</fieldset>
