@@ -3,28 +3,29 @@
 	<fieldset name="section1" label="PLG_JOOAG_SHARIFF_TAB_GENERAL">
 		<field name="services" type="list" class="advancedSelect" label="PLG_JOOAG_SHARIFF_SERVICE" multiple="false">
 			<option value="">PLG_JOOAG_SHARIFF_NO_SERVICE_SELECTED</option>
-			<option value="Twitter">PLG_JOOAG_SHARIFF_TWITTER_NAME</option>
+			<option value="AddThis">PLG_JOOAG_SHARIFF_ADDTHIS_NAME</option>
+			<option value="Diaspora">PLG_JOOAG_SHARIFF_DIASPORA_NAME</option>
 			<option value="Facebook">PLG_JOOAG_SHARIFF_FACEBOOK_NAME</option>
+			<option value="Flattr">PLG_JOOAG_SHARIFF_FLATTR_NAME</option>
+			<option value="Flipboard">PLG_JOOAG_SHARIFF_FLIPBOARD_NAME</option>
 			<option value="GooglePlus">PLG_JOOAG_SHARIFF_GOOGLE_PLUS_NAME</option>
 			<option value="LinkedIn">PLG_JOOAG_SHARIFF_LINKEDIN_NAME</option>
-			<option value="Pinterest">PLG_JOOAG_SHARIFF_PINTEREST_NAME</option>
-			<option value="Xing">PLG_JOOAG_SHARIFF_XING_NAME</option>
-			<option value="Whatsapp">PLG_JOOAG_SHARIFF_WHATSAPP_NAME</option>
 			<option value="Mail">PLG_JOOAG_SHARIFF_MAIL_NAME</option>
-			<option value="Info">PLG_JOOAG_SHARIFF_INFO_NAME</option>
-			<option value="AddThis">PLG_JOOAG_SHARIFF_ADDTHIS_NAME</option>
-			<option value="Tumblr">PLG_JOOAG_SHARIFF_TUMBLR_NAME</option>
-			<option value="Flattr">PLG_JOOAG_SHARIFF_FLATTR_NAME</option>
-			<option value="Diaspora">PLG_JOOAG_SHARIFF_DIASPORA_NAME</option>
+			<option value="Pinterest">PLG_JOOAG_SHARIFF_PINTEREST_NAME</option>
+			<option value="Print">PLG_JOOAG_SHARIFF_PRINT_NAME</option>
+			<option value="Qzone">PLG_JOOAG_SHARIFF_QZONE_NAME</option>
 			<option value="Reddit">PLG_JOOAG_SHARIFF_REDDIT_NAME</option>
 			<option value="StumbleUpon">PLG_JOOAG_SHARIFF_STUMBLEUPON_NAME</option>
-			<option value="Threema">PLG_JOOAG_SHARIFF_THREEMA_NAME</option>
-			<option value="Weibo">PLG_JOOAG_SHARIFF_WEIBO_NAME</option>
-			<option value="Tencent-weibo">PLG_JOOAG_SHARIFF_TENCENT_WEIBO_NAME</option>
-			<option value="Qzone">PLG_JOOAG_SHARIFF_QZONE_NAME</option>
 			<option value="Telegram">PLG_JOOAG_SHARIFF_TELEGRAM_NAME</option>
+			<option value="Tencent-weibo">PLG_JOOAG_SHARIFF_TENCENT_WEIBO_NAME</option>
+			<option value="Threema">PLG_JOOAG_SHARIFF_THREEMA_NAME</option>
+			<option value="Tumblr">PLG_JOOAG_SHARIFF_TUMBLR_NAME</option>
+			<option value="Twitter">PLG_JOOAG_SHARIFF_TWITTER_NAME</option>	
 			<option value="Vk">PLG_JOOAG_SHARIFF_VK_NAME</option>
-			<option value="Flipboard">PLG_JOOAG_SHARIFF_FLIPBOARD_NAME</option>
+			<option value="Weibo">PLG_JOOAG_SHARIFF_WEIBO_NAME</option>
+			<option value="Whatsapp">PLG_JOOAG_SHARIFF_WHATSAPP_NAME</option>	
+			<option value="Xing">PLG_JOOAG_SHARIFF_XING_NAME</option>
+			<option value="Info">PLG_JOOAG_SHARIFF_INFO_NAME</option>			
 		</field>
 	</fieldset>
 	
