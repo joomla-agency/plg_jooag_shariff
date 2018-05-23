@@ -41,16 +41,10 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 - [ ] More Options for Info and Print soon
 
 <h2>Update Instructions:</h2>
-
-* Alle previous versions before 4.0
-=======
-- [ ] Info Page Urls and Print Service Additions
-
-<h2>Update Instructions:</h2>
 * All previous versions before 4.0.0
-
   * You need to uninstall the old Jooag Shariff Plugin
   * Make a fresh install and do the needed Settings again, please.
+  * Please, make a note of your current settings. 
 
 <h2>Documentation:</h2>
 <h4>First steps</h4>
