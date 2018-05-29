@@ -2,6 +2,107 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 3.3.2 - 2018-01-29
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#243](https://github.com/zendframework/zend-servicemanager/pull/243) provides
+  a fix to the `ReflectionBasedAbstractFactory` to resolve type-hinted arguments
+  with default values to their default values if no matching type is found in
+  the container.
+
+- [#233](https://github.com/zendframework/zend-servicemanager/pull/233) fixes a
+  number of parameter annotations to reflect the actual types used.
+
+## 3.3.1 - 2017-11-27
+
+### Added
+
+- [#201](https://github.com/zendframework/zend-servicemanager/pull/201) and
+  [#202](https://github.com/zendframework/zend-servicemanager/pull/202) add
+  support for PHP versions 7.1 and 7.2.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#206](https://github.com/zendframework/zend-servicemanager/pull/206) fixes an
+  issue where by callables in `Class::method` notation were not being honored
+  under PHP 5.6.
+
+## 3.3.0 - 2017-03-01
+
+### Added
+
+- [#180](https://github.com/zendframework/zend-servicemanager/pull/180) adds
+  explicit support for PSR-11 (ContainerInterface) by requiring
+  container-interop at a minimum version of 1.2.0, and adding a requirement on
+  psr/container 1.0. `Zend\ServiceManager\ServiceLocatorInterface` now
+  explicitly extends the `ContainerInterface` from both projects.
+  
+  Factory interfaces still typehint against the container-interop variant, as
+  changing the typehint would break backwards compatibility. Users can
+  duck-type most of these interfaces, however, by creating callables or
+  invokables that typehint against psr/container instead.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
+## 3.2.1 - 2017-02-15
+
+### Added
+
+- [#176](https://github.com/zendframework/zend-servicemanager/pull/176) adds
+  the options `-i` or `--ignore-unresolved` to the shipped
+  `generate-deps-for-config-factory` command. This flag allows it to build
+  configuration for classes resolved by the `ConfigAbstractFactory` that
+  typehint on interfaces, which was previously unsupported.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#174](https://github.com/zendframework/zend-servicemanager/pull/174) updates
+  the `ConfigAbstractFactory` to allow the `config` service to be either an
+  `array` or an `ArrayObject`; previously, only `array` was supported.
+
 ## 3.2.0 - 2016-12-19
 
 ### Added

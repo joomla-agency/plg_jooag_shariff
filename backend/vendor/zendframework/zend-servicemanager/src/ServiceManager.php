@@ -77,7 +77,7 @@ class ServiceManager implements ServiceLocatorInterface
     protected $factories = [];
 
     /**
-     * @var Initializer\InitializerInterface[]
+     * @var Initializer\InitializerInterface[]|callable[]
      */
     protected $initializers = [];
 
@@ -561,7 +561,7 @@ class ServiceManager implements ServiceLocatorInterface
     /**
      * Instantiate initializers for to avoid checks during service construction.
      *
-     * @param string[]|callable[]|Initializer\InitializerInterface[] $initializers
+     * @param string[]|Initializer\InitializerInterface[]|callable[] $initializers
      *
      * @return void
      */
@@ -667,6 +667,12 @@ class ServiceManager implements ServiceLocatorInterface
         if (is_callable($factory)) {
             if ($lazyLoaded) {
                 $this->factories[$name] = $factory;
+            }
+            // PHP 5.6 fails on 'class::method' callables unless we explode them:
+            if (PHP_MAJOR_VERSION < 7
+                && is_string($factory) && strpos($factory, '::') !== false
+            ) {
+                $factory = explode('::', $factory);
             }
             return $factory;
         }
