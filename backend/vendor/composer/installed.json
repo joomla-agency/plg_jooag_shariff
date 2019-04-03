@@ -154,34 +154,35 @@
     },
     {
         "name": "guzzlehttp/psr7",
-        "version": "1.4.2",
-        "version_normalized": "1.4.2.0",
+        "version": "1.5.2",
+        "version_normalized": "1.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/psr7.git",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+            "reference": "9f83dded91781a01c63574e387eaa769be769115"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
+            "reference": "9f83dded91781a01c63574e387eaa769be769115",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.0",
-            "psr/http-message": "~1.0"
+            "psr/http-message": "~1.0",
+            "ralouphie/getallheaders": "^2.0.5"
         },
         "provide": {
             "psr/http-message-implementation": "1.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "~4.0"
+            "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
         },
-        "time": "2017-03-20T17:10:46+00:00",
+        "time": "2018-12-04T20:46:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.4-dev"
+                "dev-master": "1.5-dev"
             }
         },
         "installation-source": "dist",
@@ -212,6 +213,7 @@
         "keywords": [
             "http",
             "message",
+            "psr-7",
             "request",
             "response",
             "stream",
@@ -372,23 +374,23 @@
     },
     {
         "name": "psr/log",
-        "version": "1.0.2",
-        "version_normalized": "1.0.2.0",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/log.git",
-            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2016-10-10T12:19:37+00:00",
+        "time": "2018-11-20T15:27:04+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -468,6 +470,48 @@
             "psr-16",
             "simple-cache"
         ]
+    },
+    {
+        "name": "ralouphie/getallheaders",
+        "version": "2.0.5",
+        "version_normalized": "2.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ralouphie/getallheaders.git",
+            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~3.7.0",
+            "satooshi/php-coveralls": ">=1.0"
+        },
+        "time": "2016-02-11T07:05:27+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/getallheaders.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ralph Khattar",
+                "email": "ralph.khattar@gmail.com"
+            }
+        ],
+        "description": "A polyfill for getallheaders."
     },
     {
         "name": "zendframework/zend-cache",
@@ -612,24 +656,24 @@
     },
     {
         "name": "zendframework/zend-servicemanager",
-        "version": "3.3.2",
-        "version_normalized": "3.3.2.0",
+        "version": "3.4.0",
+        "version_normalized": "3.4.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/zendframework/zend-servicemanager.git",
-            "reference": "9f35a104b8d4d3b32da5f4a3b6efc0dd62e5af42"
+            "reference": "a1ed6140d0d3ee803fec96582593ed024950067b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/9f35a104b8d4d3b32da5f4a3b6efc0dd62e5af42",
-            "reference": "9f35a104b8d4d3b32da5f4a3b6efc0dd62e5af42",
+            "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/a1ed6140d0d3ee803fec96582593ed024950067b",
+            "reference": "a1ed6140d0d3ee803fec96582593ed024950067b",
             "shasum": ""
         },
         "require": {
             "container-interop/container-interop": "^1.2",
             "php": "^5.6 || ^7.0",
             "psr/container": "^1.0",
-            "zendframework/zend-stdlib": "^3.1"
+            "zendframework/zend-stdlib": "^3.2.1"
         },
         "provide": {
             "container-interop/container-interop-implementation": "^1.2",
@@ -646,7 +690,7 @@
             "ocramius/proxy-manager": "ProxyManager 1.* to handle lazy initialization of services",
             "zendframework/zend-stdlib": "zend-stdlib ^2.5 if you wish to use the MergeReplaceKey or MergeRemoveKey features in Config instances"
         },
-        "time": "2018-01-29T16:48:37+00:00",
+        "time": "2018-12-22T06:05:09+00:00",
         "bin": [
             "bin/generate-deps-for-config-factory",
             "bin/generate-factory-for-class"
@@ -682,17 +726,17 @@
     },
     {
         "name": "zendframework/zend-stdlib",
-        "version": "3.2.0",
-        "version_normalized": "3.2.0.0",
+        "version": "3.2.1",
+        "version_normalized": "3.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/zendframework/zend-stdlib.git",
-            "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae"
+            "reference": "66536006722aff9e62d1b331025089b7ec71c065"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
-            "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
+            "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/66536006722aff9e62d1b331025089b7ec71c065",
+            "reference": "66536006722aff9e62d1b331025089b7ec71c065",
             "shasum": ""
         },
         "require": {
@@ -703,7 +747,7 @@
             "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
             "zendframework/zend-coding-standard": "~1.0.0"
         },
-        "time": "2018-04-30T13:50:40+00:00",
+        "time": "2018-08-28T21:34:05+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {

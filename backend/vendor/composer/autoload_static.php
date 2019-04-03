@@ -4,9 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3d41b37b8619165d64a8b29675a4347e
+class ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171
 {
     public static $files = array (
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -160,6 +161,7 @@ class ComposerStaticInit3d41b37b8619165d64a8b29675a4347e
         'GuzzleHttp\\Psr7\\PumpStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/PumpStream.php',
         'GuzzleHttp\\Psr7\\Request' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Request.php',
         'GuzzleHttp\\Psr7\\Response' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Response.php',
+        'GuzzleHttp\\Psr7\\Rfc7230' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc7230.php',
         'GuzzleHttp\\Psr7\\ServerRequest' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/ServerRequest.php',
         'GuzzleHttp\\Psr7\\Stream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Stream.php',
         'GuzzleHttp\\Psr7\\StreamDecoratorTrait' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamDecoratorTrait.php',
@@ -176,6 +178,7 @@ class ComposerStaticInit3d41b37b8619165d64a8b29675a4347e
         'Heise\\Shariff\\Backend' => __DIR__ . '/../..' . '/src/Backend.php',
         'Heise\\Shariff\\Backend\\AddThis' => __DIR__ . '/../..' . '/src/Backend/AddThis.php',
         'Heise\\Shariff\\Backend\\BackendManager' => __DIR__ . '/../..' . '/src/Backend/BackendManager.php',
+        'Heise\\Shariff\\Backend\\Buffer' => __DIR__ . '/../..' . '/src/Backend/Buffer.php',
         'Heise\\Shariff\\Backend\\Facebook' => __DIR__ . '/../..' . '/src/Backend/Facebook.php',
         'Heise\\Shariff\\Backend\\Flattr' => __DIR__ . '/../..' . '/src/Backend/Flattr.php',
         'Heise\\Shariff\\Backend\\LinkedIn' => __DIR__ . '/../..' . '/src/Backend/LinkedIn.php',
@@ -216,6 +219,7 @@ class ComposerStaticInit3d41b37b8619165d64a8b29675a4347e
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
         'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
         'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
@@ -375,6 +379,7 @@ class ComposerStaticInit3d41b37b8619165d64a8b29675a4347e
         'Zend\\ServiceManager\\Initializer\\InitializerInterface' => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src/Initializer/InitializerInterface.php',
         'Zend\\ServiceManager\\PluginManagerInterface' => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src/PluginManagerInterface.php',
         'Zend\\ServiceManager\\Proxy\\LazyServiceFactory' => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src/Proxy/LazyServiceFactory.php',
+        'Zend\\ServiceManager\\PsrContainerDecorator' => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src/PsrContainerDecorator.php',
         'Zend\\ServiceManager\\ServiceLocatorInterface' => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src/ServiceLocatorInterface.php',
         'Zend\\ServiceManager\\ServiceManager' => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src/ServiceManager.php',
         'Zend\\ServiceManager\\Test\\CommonPluginManagerTrait' => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src/Test/CommonPluginManagerTrait.php',
@@ -434,9 +439,9 @@ class ComposerStaticInit3d41b37b8619165d64a8b29675a4347e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3d41b37b8619165d64a8b29675a4347e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3d41b37b8619165d64a8b29675a4347e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3d41b37b8619165d64a8b29675a4347e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171::$classMap;
 
         }, null, ClassLoader::class);
     }
