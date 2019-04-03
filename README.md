@@ -6,8 +6,8 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 * https://www.transifex.com/jooag/plg_jooag_shariff/
 
 <b>System Requirements:</b>
-* Joomla 3.8+ 
-* PHP 5.6, 7 or 7.1 (if you use the Counter)
+* Joomla 3.9+ 
+* PHP 7.1, 7.2 or 7.3
 
 <b>Plugin features:</b>
 * Joomla Update integration
@@ -37,13 +37,13 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 - [x] v3.2.9 - New: tumblr button
 - [x] v3.3.0 - Shorttag parameter support for custom icons, backend integration and other shariff settings
 - [x] v3.3.0 - Rearrange the Plugin Options and simplify settings
-- [ ] Ongoing integration of updates from Shariff Libraray & Backend
+- [x] Ongoing integration of updates from Shariff Libraray & Backend
 - [ ] More Options for Info and Print soon
 
 <h2>Update Instructions:</h2>
-* All previous versions before 4.0.0
+* All previous versions before 5.0.0
   * You need to uninstall the old Jooag Shariff Plugin
-  * Make a fresh install and do the needed Settings again, please.
+  * Make a fresh install and do the needed Settings again.
   * Please, make a note of your current settings. 
 
 <h2>Documentation:</h2>
