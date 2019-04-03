@@ -27,7 +27,7 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 * Shariff Languages: bg, de, en, es, fi, hr, hu, ja, ko, no, pl, pt, ro, ru, sk, sl, sr, sv, tr, zh
 * Counter: Shariff Backend PHP integration
  
-<b>Future plans & Roadmap:</b>
+<b>Changelog:</b>
 - [x] v3.0 - Initial release with Heise Shariff Library and Shariff Backend integration
 - [x] v3.1 - Icon ordering, more bugifixing, facebook api integration, move assets folder to the joomla media folder
 - [x] v3.2 - Custom settings for theme and orienation in every shorttag e.g. {shariff orientation:vertical theme:grey}
@@ -39,7 +39,8 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 - [x] v3.3.0 - Rearrange the Plugin Options and simplify settings
 - [x] v4.x.x - Updated Shariff Frontend and Backend Library
 - [x] v5.x.x - Updated Shariff Frontend and Backend Library
-- [x] Ongoing integration of updates from Shariff Libraray & Backend
+
+<b>Future plans & Roadmap:</b>
 - [ ] More Options for Info and Print soon
 
 <h2>Update Instructions:</h2>
