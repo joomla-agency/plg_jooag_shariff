@@ -9,32 +9,6 @@ use Heise\Shariff\Backend;
  */
 class Application
 {
-    /**
-     * Sample configuration
-     *
-     * @var array
-     */
-    private static $configuration = [
-        'cache' => [
-            'ttl' => 60
-        ],
-        'domains' => [
-            'www.heise.de',
-            'www.ct.de'
-        ],
-        'services' => [
-            'Facebook',
-            'LinkedIn',
-            'Reddit',
-            'StumbleUpon',
-            'Flattr',
-            'Pinterest',
-            'Xing',
-            'AddThis',
-            'Vk'
-        ]
-    ];
-
     public static function run()
     {
         header('Content-type: application/json');
