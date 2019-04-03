@@ -23,18 +23,5 @@ class Application
 			echo json_encode(null);
 		}
 	}
-
-    public static function run()
-    {
-        header('Content-type: application/json');
-
-        $url = isset($_GET['url']) ? $_GET['url'] : '';
-        if ($url) {
-            $shariff = new Backend(self::$configuration);
-            echo json_encode($shariff->get($url));
-        } else {
-            echo json_encode(null);
-        }
-    }
 }
 Application::run();
