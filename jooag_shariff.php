@@ -110,10 +110,11 @@ class plgSystemJooag_Shariff extends JPlugin
 		if (preg_match_all('/{shariff\ ([^}]+)\}|\{shariff\}/', $article->text, $matches) &&
 			$this->getAccessGeneral('com_shorttag', $article, 'BeforeDisplay') == 1)
 		{
-			$params = explode(' ', trim($matches[0][0],'}'));
+			
+			$configs = explode(' ', trim($matches[0][0],'}'));
 			$config = array();
 
-			foreach ($params as $key => $item)
+			foreach ($configs as $key => $item)
 			{
 				if ($key != 0)
 				{
@@ -121,7 +122,7 @@ class plgSystemJooag_Shariff extends JPlugin
 					$config[$k] = $v;
 				}
 			}
-
+			
 			$this->params->get('com_shorttag') ? $config['shorttag'] = 1 : $config['shorttag'] = 0;
 			$article->text = str_replace($matches[0][0], $this->generateHTML($config), $article->text);
 		}
