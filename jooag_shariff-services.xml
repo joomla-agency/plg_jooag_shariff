@@ -4,6 +4,7 @@
 		<field name="services" type="list" class="advancedSelect" label="PLG_JOOAG_SHARIFF_SERVICE" multiple="false">
 			<option value="">PLG_JOOAG_SHARIFF_NO_SERVICE_SELECTED</option>
 			<option value="AddThis">PLG_JOOAG_SHARIFF_ADDTHIS_NAME</option>
+			<option value="Buffer">PLG_JOOAG_SHARIFF_BUFFER_NAME</option>
 			<option value="Diaspora">PLG_JOOAG_SHARIFF_DIASPORA_NAME</option>
 			<option value="Facebook">PLG_JOOAG_SHARIFF_FACEBOOK_NAME</option>
 			<option value="Flattr">PLG_JOOAG_SHARIFF_FLATTR_NAME</option>
