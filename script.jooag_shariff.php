@@ -14,8 +14,8 @@ class PlgSystemJooag_shariffInstallerScript
 {
 	public function preflight($type, $parent)
 	{
-		$minPHP = '5.6.0';
-		$minJoomla = '3.8.0';
+		$minPHP = '7.1.0';
+		$minJoomla = '3.9.0';
 		$errorCount = '0';
 		
 		if(!version_compare(PHP_VERSION, $minPHP, 'ge'))
