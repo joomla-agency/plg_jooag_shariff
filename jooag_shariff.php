@@ -239,13 +239,12 @@ class plgSystemJooag_Shariff extends JPlugin
 		$html .= (array_key_exists('orientation', $config)) ? ' data-orientation="'.$config['orientation'] . '"' : ' data-orientation="'.$this->params->get('data_orientation') . '"';
 		$html .= (array_key_exists('theme', $config)) ? ' data-theme="'.$config['theme'].'"' : ' data-theme="' . $this->params->get('data_theme') . '"';
 		$html .= (array_key_exists('style', $config)) ? ' data-button-style="'.$config['style'].'"' : ' data-button-style="' . $this->params->get('data_style') . '"';
-		
-		
+				
 		foreach($this->params->get('services') as $service)
 		{
 			foreach($service as $key => $option)
 			{
-				if ($option && !preg_match('/^special_/', $key))
+				if ($option && !preg_match('/^special_/', $key) && !preg_match('/^services/', $key) )
 				{
 					$html .= $key . '="' . $option . '"';
 				}
@@ -266,7 +265,7 @@ class plgSystemJooag_Shariff extends JPlugin
 				$services[] = $service->services;
 			}
 		}
-
+		
 		$html .= ' data-services="' . htmlspecialchars(json_encode(array_map('strtolower', $services))) . '"';
 		$html .= '></div>';
 		return $html;
@@ -305,8 +304,15 @@ class plgSystemJooag_Shariff extends JPlugin
 
 				if ($service->services == 'Facebook')
 				{
-					$json->Facebook->app_id = $service->special_facebook_app_id;
-					$json->Facebook->secret = $service->special_facebook_app_secret;
+					if($service->special_facebook_app_id)
+					{
+						$json->Facebook->app_id = $service->special_facebook_app_id;
+					}
+					
+					if($service->special_facebook_app_secret)
+					{
+						$json->Facebook->secret = $service->special_facebook_app_secret;
+					}
 				}
 			}
 
