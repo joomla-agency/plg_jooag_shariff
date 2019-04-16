@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomla-agentur.de</authorEmail>
 	<authorUrl>www.joomla-agentur.de</authorUrl>
-	<version>5.0.0</version>
+	<version>5.0.1</version>
 	<description>PLG_JOOAG_SHARIFF_XML_DESCRIPTION</description>
 
 	<scriptfile>script.jooag_shariff.php</scriptfile>
