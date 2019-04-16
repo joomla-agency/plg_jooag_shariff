@@ -219,12 +219,7 @@ class plgSystemJooag_Shariff extends JPlugin
 			JFolder::create(JPATH_SITE . '/cache/plg_jooag_shariff', 0755);
 		}
 
-		JHtml::_('jquery.framework');
-		
 		$doc = JFactory::getDocument();
-		$doc->addStyleSheet(JURI::root().'media/plg_jooag_shariff/assets/'.$this->params->get('shariffcss'));
-		$doc->addScript(JURI::root().'media/plg_jooag_shariff/assets/'.$this->params->get('shariffjs'));
-		$doc->addScriptDeclaration('jQuery(document).ready(function() {var buttonsContainer = jQuery(".shariff");new Shariff(buttonsContainer);});');
 
 		if ($this->params->get('shariffcss') != '-1')
 		{
@@ -232,7 +227,8 @@ class plgSystemJooag_Shariff extends JPlugin
 		}
 
 		if ($this->params->get('shariffjs') != '-1')
-		{
+		{	
+			JHtml::_('jquery.framework');
 			$doc->addScript(JURI::root() . 'media/plg_jooag_shariff/assets/' . $this->params->get('shariffjs'));
 			$doc->addScriptDeclaration('jQuery(document).ready(function() {var buttonsContainer = jQuery(".shariff");new Shariff(buttonsContainer);});');
 		}
