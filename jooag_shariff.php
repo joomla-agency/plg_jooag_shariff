@@ -239,9 +239,24 @@ class plgSystemJooag_Shariff extends JPlugin
 		$html .= (array_key_exists('orientation', $config)) ? ' data-orientation="'.$config['orientation'] . '"' : ' data-orientation="'.$this->params->get('data_orientation') . '"';
 		$html .= (array_key_exists('theme', $config)) ? ' data-theme="'.$config['theme'].'"' : ' data-theme="' . $this->params->get('data_theme') . '"';
 		$html .= (array_key_exists('style', $config)) ? ' data-button-style="'.$config['style'].'"' : ' data-button-style="' . $this->params->get('data_style') . '"';
-				
+		
 		foreach($this->params->get('services') as $service)
 		{
+			if($service->special_data_info_display)
+			{
+				$html .= ' data-info-display="' . $service->special_data_info_display . '"';
+			}
+
+			if($service->special_data_info_url)
+			{
+				jimport('joomla.database.table');
+				$item =	JTable::getInstance("content");
+				$item->load($service->special_data_info_url);
+				require_once JPATH_SITE . '/components/com_content/helpers/route.php';
+				$link = JRoute::_(ContentHelperRoute::getArticleRoute($item->id, $item->catid, $item->language));
+				$html .= ' data-info-url="' . $link . '"';
+			}
+
 			foreach($service as $key => $option)
 			{
 				if ($option && !preg_match('/^special_/', $key) && !preg_match('/^services/', $key) )
@@ -249,15 +264,6 @@ class plgSystemJooag_Shariff extends JPlugin
 					$html .= $key . '="' . $option . '"';
 				}
 
-				if ($key == 'special_data-info-url' && $option)
-				{
-					jimport('joomla.database.table');
-					$item =	JTable::getInstance("content");
-					$item->load($option);
-					require_once JPATH_SITE . '/components/com_content/helpers/route.php';
-					$link = JRoute::_(ContentHelperRoute::getArticleRoute($item->id, $item->catid, $item->language));
-					$html .= ' data-info-url="' . $link . '"';
-				}
 			}
 
 			if ($service->services)
@@ -265,7 +271,7 @@ class plgSystemJooag_Shariff extends JPlugin
 				$services[] = $service->services;
 			}
 		}
-		
+
 		$html .= ' data-services="' . htmlspecialchars(json_encode(array_map('strtolower', $services))) . '"';
 		$html .= '></div>';
 		return $html;
