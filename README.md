@@ -41,7 +41,8 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 - [x] v5.x.x - Updated Shariff Frontend and Backend Library
 
 <b>Future plans & Roadmap:</b>
-- [ ] More Options for Info and Print soon
+- [ ] More Options for Info and Print
+- [ ] Override functionality
 
 <h2>Update Instructions:</h2>
 * All previous versions before 5.0.0
