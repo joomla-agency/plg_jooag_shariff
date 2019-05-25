@@ -57,6 +57,32 @@
 					<option value="icon">PLG_JOOAG_SHARIFF_STYLE_ICON</option>
 					<option value="icon-count">PLG_JOOAG_SHARIFF_STYLE_ICON_COUNT</option>
 				</field>
+				
+				<field name="shariff_lang" label="PLG_JOOAG_SHARIFF_LANG" type="list" class="btn-group"
+					   default="auto">
+					<option value="auto">PLG_JOOAG_SHARIFF_LANG_AUTO</option>
+					<option value="bg">PLG_JOOAG_SHARIFF_LANG_BG</option>
+					<option value="de">PLG_JOOAG_SHARIFF_LANG_DE</option>
+					<option value="en">PLG_JOOAG_SHARIFF_LANG_EN</option>
+					<option value="es">PLG_JOOAG_SHARIFF_LANG_ES</option>
+					<option value="fi">PLG_JOOAG_SHARIFF_LANG_FI</option>
+					<option value="hr">PLG_JOOAG_SHARIFF_LANG_HR</option>
+					<option value="hu">PLG_JOOAG_SHARIFF_LANG_HU</option>
+					<option value="ja">PLG_JOOAG_SHARIFF_LANG_JA</option>
+					<option value="ko">PLG_JOOAG_SHARIFF_LANG_KO</option>
+					<option value="no">PLG_JOOAG_SHARIFF_LANG_NO</option>
+					<option value="pl">PLG_JOOAG_SHARIFF_LANG_PL</option>
+					<option value="pt">PLG_JOOAG_SHARIFF_LANG_PT</option>
+					<option value="ro">PLG_JOOAG_SHARIFF_LANG_RO</option>
+					<option value="ru">PLG_JOOAG_SHARIFF_LANG_RU</option>
+					<option value="sk">PLG_JOOAG_SHARIFF_LANG_SK</option>
+					<option value="sl">PLG_JOOAG_SHARIFF_LANG_SL</option>
+					<option value="sr">PLG_JOOAG_SHARIFF_LANG_SR</option>
+					<option value="sv">PLG_JOOAG_SHARIFF_LANG_SV</option>
+					<option value="tr">PLG_JOOAG_SHARIFF_LANG_TR</option>
+					<option value="zh">PLG_JOOAG_SHARIFF_LANG_ZH</option>
+				</field>
+				
 				<field type="line" name="com_content_line"/>
 				<field name="com_content" label="PLG_JOOAG_SHARIFF_JOOMLA_CONTENT" type="radio" class="btn-group"
 					   default="1">
