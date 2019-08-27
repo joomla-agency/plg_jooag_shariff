@@ -81,7 +81,6 @@ return array(
     'Heise\\Shariff\\Backend\\Buffer' => $baseDir . '/src/Backend/Buffer.php',
     'Heise\\Shariff\\Backend\\Facebook' => $baseDir . '/src/Backend/Facebook.php',
     'Heise\\Shariff\\Backend\\Flattr' => $baseDir . '/src/Backend/Flattr.php',
-    'Heise\\Shariff\\Backend\\LinkedIn' => $baseDir . '/src/Backend/LinkedIn.php',
     'Heise\\Shariff\\Backend\\Pinterest' => $baseDir . '/src/Backend/Pinterest.php',
     'Heise\\Shariff\\Backend\\Reddit' => $baseDir . '/src/Backend/Reddit.php',
     'Heise\\Shariff\\Backend\\Request' => $baseDir . '/src/Backend/Request.php',

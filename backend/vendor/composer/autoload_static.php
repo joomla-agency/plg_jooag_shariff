@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171
+class ComposerStaticInitc2e05b3412b5b96739da81506749a3d1
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -181,7 +181,6 @@ class ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171
         'Heise\\Shariff\\Backend\\Buffer' => __DIR__ . '/../..' . '/src/Backend/Buffer.php',
         'Heise\\Shariff\\Backend\\Facebook' => __DIR__ . '/../..' . '/src/Backend/Facebook.php',
         'Heise\\Shariff\\Backend\\Flattr' => __DIR__ . '/../..' . '/src/Backend/Flattr.php',
-        'Heise\\Shariff\\Backend\\LinkedIn' => __DIR__ . '/../..' . '/src/Backend/LinkedIn.php',
         'Heise\\Shariff\\Backend\\Pinterest' => __DIR__ . '/../..' . '/src/Backend/Pinterest.php',
         'Heise\\Shariff\\Backend\\Reddit' => __DIR__ . '/../..' . '/src/Backend/Reddit.php',
         'Heise\\Shariff\\Backend\\Request' => __DIR__ . '/../..' . '/src/Backend/Request.php',
@@ -439,9 +438,9 @@ class ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit310aa5740e4cc82d752ce0e0f0da0171::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc2e05b3412b5b96739da81506749a3d1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc2e05b3412b5b96739da81506749a3d1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc2e05b3412b5b96739da81506749a3d1::$classMap;
 
         }, null, ClassLoader::class);
     }
