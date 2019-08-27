@@ -302,7 +302,7 @@ class plgSystemJooag_Shariff extends JPlugin
 				}
 			}
 
-			$services = array('AddThis','Buffer','Facebook','Flattr','LinkedIn','Pinterest','Reddit','StumbleUpon','Xing','Vk');
+			$services = array('AddThis','Buffer','Facebook','Flattr','Pinterest','Reddit','StumbleUpon','Xing','Vk');
 
 			foreach($params->services as $service)
 			{
