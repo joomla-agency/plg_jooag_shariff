@@ -7,6 +7,7 @@
 			<option value="Buffer">PLG_JOOAG_SHARIFF_BUFFER_NAME</option>
 			<option value="Diaspora">PLG_JOOAG_SHARIFF_DIASPORA_NAME</option>
 			<option value="Facebook">PLG_JOOAG_SHARIFF_FACEBOOK_NAME</option>
+			<option value="FacebookLike">PLG_JOOAG_SHARIFF_FACEBOOK_LIKE_NAME</option>
 			<option value="Flattr">PLG_JOOAG_SHARIFF_FLATTR_NAME</option>
 			<option value="Flipboard">PLG_JOOAG_SHARIFF_FLIPBOARD_NAME</option>
 			<option value="GooglePlus">PLG_JOOAG_SHARIFF_GOOGLE_PLUS_NAME</option>
