@@ -131,6 +131,16 @@ class plgSystemJooag_Shariff extends JPlugin
 			return;
 		}
 
+		foreach ($this->params->get('disallow_components') as $component){
+
+			$jinput = JFactory::getApplication()->input;
+
+			if($component->disallow_components == $jinput->get('option')){
+				return;
+			}
+			
+		}
+
 		if (in_array($position, (array) $this->params->get('output_position')))
 		{
 			if ($this->getAccessComContent($context ,$article) == 1 && $this->getAccessMenu($context) == 1)

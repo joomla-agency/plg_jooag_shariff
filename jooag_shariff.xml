@@ -98,7 +98,14 @@
 					   label="PLG_JOOAG_SHARIFF_MENU_SELECT"/>
 				<field type="spacer" name="myspaceroutput_everywhere" showon="com_everywhere:1"
 					   label="PLG_JOOAG_OUTPUT_EVERYWHERE_DESC" class="alert alert-info"/>
-
+				<field type="line" name="disallow_component_use_line"/>
+				<field name="disallow_components" type="subform" 
+					   formsource="plugins/system/jooag_shariff/jooag_shariff-disallowComponents.xml" min="0" max="20"
+					   multiple="true" layout="joomla.form.field.subform.repeatable-table" groupByFieldset="true"
+					   label="PLG_JOOAG_SHARIFF_DISALLOW_COMPONENTS" description=""/>
+				
+				
+				
 				<field type="line" name="shorttag_use_line"/>
 				<field name="com_shorttag" label="PLG_JOOAG_OUTPUT_SHORTTAG_MODE" type="radio" class="btn-group"
 					   default="1">

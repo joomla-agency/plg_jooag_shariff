@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset name="components" label="PLG_JOOAG_SHARIFF_TAB_COMPONENTS">
+			<field name="disallow_components" type="folderlist" default="none" label="" description="" directory="components" filter="" exclude="" stripext="" />	
+	</fieldset>
+</form>
