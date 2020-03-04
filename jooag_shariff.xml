@@ -18,6 +18,7 @@
 		<folder>language</folder>
 		<filename plugin="jooag_shariff">jooag_shariff-services.xml</filename>
 		<filename plugin="jooag_shariff">jooag_shariff-customDomains.xml</filename>
+		<filename plugin="jooag_shariff">jooag_shariff-disallowComponents.xml</filename>
 		<filename plugin="jooag_shariff">jooag_shariff.php</filename>
 		<filename plugin="jooag_shariff">README.md</filename>
 	</files>
