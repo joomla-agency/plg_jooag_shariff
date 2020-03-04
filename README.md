@@ -15,6 +15,7 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
  * Now with shorttag parameter support e.g.  {shariff orientation=vertical theme=white}
 * Languages: English, German, France (Contributed from: Simon | cinnk.com)
 * Restrict the plugin execution to Menu Items or Content Categories
+* Exclude Components
 * Ordering for your Buttons
 * Extended Shariff Backend Cache Handler
 * Plugin settings for Themes, Orientation, Services and much more...
