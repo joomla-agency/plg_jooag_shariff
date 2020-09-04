@@ -249,6 +249,7 @@ class plgSystemJooag_Shariff extends JPlugin
 		$html .= (array_key_exists('orientation', $config)) ? ' data-orientation="'.$config['orientation'] . '"' : ' data-orientation="'.$this->params->get('data_orientation') . '"';
 		$html .= (array_key_exists('theme', $config)) ? ' data-theme="'.$config['theme'].'"' : ' data-theme="' . $this->params->get('data_theme') . '"';
 		$html .= (array_key_exists('style', $config)) ? ' data-button-style="'.$config['style'].'"' : ' data-button-style="' . $this->params->get('data_style') . '"';
+		$html .= 'data-media-url="null"';
 		
 		foreach($this->params->get('services') as $service)
 		{
