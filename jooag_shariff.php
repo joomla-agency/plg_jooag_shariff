@@ -244,8 +244,9 @@ class plgSystemJooag_Shariff extends JPlugin
 		}
 
 		$html  = '<div class="shariff"';
+		$html .= ' data-lang="';
+		$html .= ($this->params->get('shariff_lang') != 'auto') ? $this->params->get('shariff_lang') . '"' : substr (JLanguageHelper::getLanguages('lang_code')[ JFactory::getLanguage()->getTag() ]->sef, 0, 2) . '"';
 		$html .= ($this->params->get('shariff_counter')) ? ' data-backend-url="/plugins/system/jooag_shariff/backend/"' : '';
-		$html .= ' data-lang="' . JLanguageHelper::getLanguages('lang_code')[ JFactory::getLanguage()->getTag() ]->sef . '"';
 		$html .= (array_key_exists('orientation', $config)) ? ' data-orientation="'.$config['orientation'] . '"' : ' data-orientation="'.$this->params->get('data_orientation') . '"';
 		$html .= (array_key_exists('theme', $config)) ? ' data-theme="'.$config['theme'].'"' : ' data-theme="' . $this->params->get('data_theme') . '"';
 		$html .= (array_key_exists('style', $config)) ? ' data-button-style="'.$config['style'].'"' : ' data-button-style="' . $this->params->get('data_style') . '"';
