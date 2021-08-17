@@ -126,7 +126,7 @@ class plgSystemJooag_Shariff extends JPlugin
 
 	private function getAccessGeneral($context, $article, $position)
 	{
-		if ($this->app->isAdmin())
+		if ($this->app->isClient('administrator'))
 		{
 			return;
 		}
