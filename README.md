@@ -38,8 +38,9 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 - [x] v3.2.9 - New: tumblr button
 - [x] v3.3.0 - Shorttag parameter support for custom icons, backend integration and other shariff settings
 - [x] v3.3.0 - Rearrange the Plugin Options and simplify settings
-- [x] v4.x.x - Updated Shariff Frontend and Backend Library
-- [x] v5.x.x - Updated Shariff Frontend and Backend Library
+- [x] v4.0.0 - Upated Shariff Frontend and Backend Library
+- [x] v5.0.0 - Updated Shariff Frontend and Backend Library
+- [x] v6.0.0 - Joomla 4 Compatibility
 
 <b>Future plans & Roadmap:</b>
 - [ ] More Options for Info and Print
