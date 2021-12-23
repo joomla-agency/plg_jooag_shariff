@@ -40,7 +40,7 @@
 		<field name="data-mail-body" showon="services:Mail" type="input" label="PLG_JOOAG_SHARIFF_MAIL_BODY" />
 		<field type="spacer" showon="services:Mail" name="data-mail-spacer" label="PLG_JOOAG_SHARIFF_MAIL_DESC" class="alert alert-error" />
 		<field name="special_data_info_display" showon="services:Info" label="PLG_JOOAG_SHARIFF_INFO_DISPLAY" type="list" class="btn-group" default="">
-			<option>PLG_JOOAG_SHARIFF_DEFAULT</option>
+			<option>PLG_JOOAG_SHARIFF_INFO_DISPLAY_DEFAULT</option>
 			<option value="blank">PLG_JOOAG_SHARIFF_INFO_DISPLAY_BLANK</option>
 			<option value="popup">PLG_JOOAG_SHARIFF_INFO_DISPLAY_POPUP</option>
 			<option value="self">PLG_JOOAG_SHARIFF_INFO_DISPLAY_SELF</option>
