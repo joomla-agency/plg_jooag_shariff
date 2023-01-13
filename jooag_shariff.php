@@ -112,7 +112,7 @@ class plgSystemJooag_Shariff extends JPlugin
 		{
 			$configs = explode(' ', $matches[1][0]);
 			$config = array();
-			
+
 			foreach ($configs as $item)
 			{
 				list($key, $value) = explode("=", $item);
@@ -342,8 +342,10 @@ class plgSystemJooag_Shariff extends JPlugin
 			}
 
 			$json->services = array_values($json->services);
+			$json->cache = new stdClass();
 			$json->cache->cacheDir = JPATH_SITE . '/cache/plg_jooag_shariff';
 			$json->cache->ttl = $params->cache_time;
+			$json->client = new stdClass();
 			$json->client->timeout = $params->client_timeout;
 
 			if ($params->cache)
