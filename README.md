@@ -6,8 +6,8 @@ This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to s
 * https://www.transifex.com/jooag/plg_jooag_shariff/
 
 <b>System Requirements:</b>
-* Joomla 3.9+ or Joomla 4.0.x
-* PHP 7.1, 7.2 or 7.3
+* Joomla 4.x
+* PHP 8.x
 
 <b>Plugin features:</b>
 * Joomla Update integration
