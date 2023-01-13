@@ -6,15 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Zend\\Stdlib\\' => array($vendorDir . '/zendframework/zend-stdlib/src'),
-    'Zend\\ServiceManager\\' => array($vendorDir . '/zendframework/zend-servicemanager/src'),
-    'Zend\\EventManager\\' => array($vendorDir . '/zendframework/zend-eventmanager/src'),
-    'Zend\\Cache\\' => array($vendorDir . '/zendframework/zend-cache/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
+    'Laminas\\ZendFrameworkBridge\\' => array($vendorDir . '/laminas/laminas-zendframework-bridge/src'),
+    'Laminas\\Stdlib\\' => array($vendorDir . '/laminas/laminas-stdlib/src'),
+    'Laminas\\ServiceManager\\' => array($vendorDir . '/laminas/laminas-servicemanager/src'),
+    'Laminas\\EventManager\\' => array($vendorDir . '/laminas/laminas-eventmanager/src'),
+    'Laminas\\Cache\\' => array($vendorDir . '/laminas/laminas-cache/src'),
     'Interop\\Container\\' => array($vendorDir . '/container-interop/container-interop/src/Interop/Container'),
     'Heise\\Shariff\\' => array($baseDir . '/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
