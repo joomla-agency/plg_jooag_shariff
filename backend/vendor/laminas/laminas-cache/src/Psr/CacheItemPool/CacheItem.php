@@ -1,75 +1,71 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Psr\CacheItemPool;
 
 use DateInterval;
 use DateTimeImmutable;
 use DateTimeInterface;
-use DateTimeZone;
 use Psr\Cache\CacheItemInterface;
+use StellaMaris\Clock\ClockInterface;
 
+use function gettype;
+use function is_int;
+use function sprintf;
+
+/**
+ * @internal The cache item should only be used by this component. To create one or more new cache item, use
+ *           {@see \Psr\Cache\CacheItemPoolInterface::getItem()} or {@see \Psr\Cache\CacheItemPoolInterface::getItems()}
+ *           instead. These methods will provide one or more {@see CacheItemInterface} instances which can be modified
+ *           by using the methods declared in the interface.
+ */
 final class CacheItem implements CacheItemInterface
 {
     /**
      * Cache key
-     * @var string
      */
-    private $key;
+    private string $key;
 
     /**
      * Cache value
+     *
      * @var mixed|null
      */
     private $value;
 
     /**
      * True if the cache item lookup resulted in a cache hit or if they item is deferred or successfully saved
-     * @var bool
      */
-    private $isHit = false;
+    private bool $isHit;
 
     /**
      * Timestamp item will expire at if expiresAt() called, null otherwise
-     * @var int|null
      */
-    private $expiration = null;
+    private ?int $expiration = null;
+
+    private ClockInterface $clock;
 
     /**
-     * Seconds after item is stored it will expire at if expiresAfter() called, null otherwise
-     * @var int|null
-     */
-    private $ttl = null;
-
-    /**
-     * @var DateTimeZone
-     */
-    private $tz;
-
-    /**
-     * Constructor.
-     *
-     * @param string $key
      * @param mixed $value
-     * @param bool $isHit
      */
-    public function __construct($key, $value, $isHit)
+    public function __construct(string $key, $value, bool $isHit, ?ClockInterface $clock = null)
     {
         $this->key   = $key;
         $this->value = $isHit ? $value : null;
         $this->isHit = $isHit;
-        $this->utc   = new DateTimeZone('UTC');
+        $clock     ??= new class implements ClockInterface
+        {
+            public function now(): DateTimeImmutable
+            {
+                return new DateTimeImmutable();
+            }
+        };
+        $this->clock = $clock;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getKey()
+    public function getKey(): string
     {
         return $this->key;
     }
@@ -85,7 +81,7 @@ final class CacheItem implements CacheItemInterface
     /**
      * {@inheritdoc}
      */
-    public function isHit()
+    public function isHit(): bool
     {
         if (! $this->isHit) {
             return false;
@@ -99,11 +95,8 @@ final class CacheItem implements CacheItemInterface
      *
      * This function is called by CacheItemPoolDecorator::saveDeferred() and is not intended for use by other calling
      * code.
-     *
-     * @param boolean $isHit
-     * @return $this
      */
-    public function setIsHit($isHit)
+    public function setIsHit(bool $isHit): self
     {
         $this->isHit = $isHit;
 
@@ -113,7 +106,7 @@ final class CacheItem implements CacheItemInterface
     /**
      * {@inheritdoc}
      */
-    public function set($value)
+    public function set($value): CacheItemInterface
     {
         $this->value = $value;
 
@@ -123,14 +116,13 @@ final class CacheItem implements CacheItemInterface
     /**
      * {@inheritdoc}
      */
-    public function expiresAt($expiration)
+    public function expiresAt($expiration): CacheItemInterface
     {
         if (! ($expiration === null || $expiration instanceof DateTimeInterface)) {
             throw new InvalidArgumentException('$expiration must be null or an instance of DateTimeInterface');
         }
 
         $this->expiration = $expiration instanceof DateTimeInterface ? $expiration->getTimestamp() : null;
-        $this->ttl = null;
 
         return $this;
     }
@@ -138,36 +130,43 @@ final class CacheItem implements CacheItemInterface
     /**
      * {@inheritdoc}
      */
-    public function expiresAfter($time)
+    public function expiresAfter($time): CacheItemInterface
     {
-        if ($time instanceof DateInterval) {
-            $now = new DateTimeImmutable('now', $this->utc);
-            $end = $now->add($time);
-            $this->ttl = $end->getTimestamp() - $now->getTimestamp();
-        } elseif (is_int($time) || $time === null) {
-            $this->ttl = $time;
-        } else {
-            throw new InvalidArgumentException(sprintf('Invalid $time "%s"', gettype($time)));
+        if ($time === null) {
+            return $this->expiresAt(null);
         }
 
-        $this->expiration = null;
+        if (is_int($time)) {
+            $interval = DateInterval::createFromDateString(sprintf('%d seconds', $time));
+            if ($interval === false) {
+                throw new InvalidArgumentException(sprintf('Provided TTL "%d" is not supported.', $time));
+            }
 
-        return $this;
+            $time = $interval;
+        }
+
+        /** @psalm-suppress RedundantConditionGivenDocblockType Until we do have native type-hints we should keep verifying this. */
+        if ($time instanceof DateInterval) {
+            $now = $this->clock->now();
+            return $this->expiresAt($now->add($time));
+        }
+
+        throw new InvalidArgumentException(sprintf('Invalid $time "%s"', gettype($time)));
     }
 
     /**
      * Returns number of seconds until item expires
      *
      * If NULL, the pool should use the default TTL for the storage adapter. If <= 0, the item has expired.
-     *
-     * @return int|null
      */
-    public function getTtl()
+    public function getTtl(): ?int
     {
-        $ttl = $this->ttl;
-        if ($this->expiration !== null) {
-            $ttl = $this->expiration - time();
+        if ($this->expiration === null) {
+            return null;
         }
-        return $ttl;
+
+        $now = $this->clock->now();
+
+        return $this->expiration - $now->getTimestamp();
     }
 }

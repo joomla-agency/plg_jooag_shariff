@@ -1,0 +1,11 @@
+{
+    "extensions": [
+        "apcu",
+        "memcached",
+        "mongodb",
+        "redis"
+    ],
+    "ini": [
+        "apc.enable_cli=1"
+    ]
+}

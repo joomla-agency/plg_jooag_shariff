@@ -1,16 +1,20 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Psr\SimpleCache;
 
 use InvalidArgumentException;
 use Psr\SimpleCache\InvalidArgumentException as PsrInvalidArgumentException;
 
+use function sprintf;
+
 class SimpleCacheInvalidArgumentException extends InvalidArgumentException implements PsrInvalidArgumentException
 {
+    public static function maximumKeyLengthExceeded(string $key, int $maximumKeyLength): self
+    {
+        return new self(sprintf(
+            'Invalid key "%s" provided; key is too long. Must be no more than %d characters',
+            $key,
+            $maximumKeyLength
+        ));
+    }
 }

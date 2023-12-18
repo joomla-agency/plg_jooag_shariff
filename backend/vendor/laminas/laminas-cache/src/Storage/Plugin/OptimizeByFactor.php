@@ -1,16 +1,12 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Storage\Plugin;
 
 use Laminas\Cache\Storage\OptimizableInterface;
 use Laminas\Cache\Storage\PostEvent;
 use Laminas\EventManager\EventManagerInterface;
+
+use function random_int;
 
 class OptimizeByFactor extends AbstractPlugin
 {
@@ -27,18 +23,18 @@ class OptimizeByFactor extends AbstractPlugin
     /**
      * Optimize by factor on a success _RESULT_
      *
-     * @param  PostEvent $event
      * @return void
+     * @phpcs:disable Generic.NamingConventions.ConstructorName.OldStyle
      */
     public function optimizeByFactor(PostEvent $event)
     {
         $storage = $event->getStorage();
-        if (! ($storage instanceof OptimizableInterface)) {
+        if (! $storage instanceof OptimizableInterface) {
             return;
         }
 
         $factor = $this->getOptions()->getOptimizingFactor();
-        if ($factor && mt_rand(1, $factor) == 1) {
+        if ($factor && random_int(1, $factor) === 1) {
             $storage->optimize();
         }
     }

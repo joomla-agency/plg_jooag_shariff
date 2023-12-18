@@ -1,15 +1,11 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Storage\Plugin;
 
 use Laminas\Cache\Storage\ExceptionEvent;
 use Laminas\EventManager\EventManagerInterface;
+
+use function call_user_func;
 
 class ExceptionHandler extends AbstractPlugin
 {
@@ -62,7 +58,6 @@ class ExceptionHandler extends AbstractPlugin
     /**
      * On exception
      *
-     * @param  ExceptionEvent $event
      * @return void
      */
     public function onException(ExceptionEvent $event)

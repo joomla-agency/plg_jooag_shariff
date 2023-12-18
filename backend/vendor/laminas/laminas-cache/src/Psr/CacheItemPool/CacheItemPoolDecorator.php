@@ -1,20 +1,36 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Psr\CacheItemPool;
 
+use DateTimeImmutable;
 use Laminas\Cache\Exception;
+use Laminas\Cache\Psr\MaximumKeyLengthTrait;
 use Laminas\Cache\Psr\SerializationTrait;
 use Laminas\Cache\Storage\ClearByNamespaceInterface;
 use Laminas\Cache\Storage\FlushableInterface;
 use Laminas\Cache\Storage\StorageInterface;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use StellaMaris\Clock\ClockInterface;
+
+use function array_diff;
+use function array_diff_key;
+use function array_flip;
+use function array_keys;
+use function array_merge;
+use function array_unique;
+use function array_values;
+use function assert;
+use function current;
+use function get_class;
+use function gettype;
+use function in_array;
+use function is_array;
+use function is_bool;
+use function is_string;
+use function preg_match;
+use function sprintf;
+use function var_export;
 
 /**
  * Decorate laminas-cache adapters as PSR-6 cache item pools.
@@ -24,38 +40,40 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class CacheItemPoolDecorator implements CacheItemPoolInterface
 {
+    use MaximumKeyLengthTrait;
     use SerializationTrait;
 
-    /**
-     * @var StorageInterface
-     */
-    private $storage;
+    private StorageInterface $storage;
+
+    /** @var array<string,CacheItem> */
+    private array $deferred = [];
+
+    private ClockInterface $clock;
 
     /**
-     * @var CacheItem[]
-     */
-    private $deferred = [];
-
-    /**
-     * Constructor.
-     *
      * PSR-6 requires that all implementing libraries support TTL so the given storage adapter must also support static
      * TTL or an exception will be raised. Currently the following adapters do *not* support static TTL: Dba,
      * Filesystem, Memory, Session and Redis < v2.
      *
-     * @param StorageInterface $storage
-     *
      * @throws CacheException
      */
-    public function __construct(StorageInterface $storage)
+    public function __construct(StorageInterface $storage, ?ClockInterface $clock = null)
     {
         $this->validateStorage($storage);
+        $capabilities = $storage->getCapabilities();
+        $this->memoizeMaximumKeyLengthCapability($storage, $capabilities);
         $this->storage = $storage;
+        $clock       ??= new class implements ClockInterface
+        {
+            public function now(): DateTimeImmutable
+            {
+                return new DateTimeImmutable();
+            }
+        };
+        $this->clock   = $clock;
     }
 
     /**
-     * Destructor.
-     *
      * Saves any deferred items that have not been committed
      */
     public function __destruct()
@@ -81,10 +99,10 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
                 // ignore
             }
 
-            return new CacheItem($key, $value, $isHit);
-        } else {
-            return clone $this->deferred[$key];
+            return new CacheItem($key, $value, $isHit ?? false, $this->clock);
         }
+
+        return clone $this->deferred[$key];
     }
 
     /**
@@ -115,13 +133,13 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
             }
 
             foreach ($cacheItems as $key => $value) {
-                $isHit = true;
-                $items[$key] = new CacheItem($key, $value, $isHit);
+                assert(is_string($key));
+                $items[$key] = new CacheItem($key, $value, true, $this->clock);
             }
 
             // Return empty items for any keys that where not found
             foreach (array_diff($keys, array_keys($cacheItems)) as $key) {
-                $items[$key] = new CacheItem($key, null, false);
+                $items[$key] = new CacheItem($key, null, false, $this->clock);
             }
         }
 
@@ -136,19 +154,17 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
         $this->validateKey($key);
 
         // check deferred items first
-        $hasItem = $this->hasDeferredItem($key);
-
-        if (! $hasItem) {
-            try {
-                $hasItem = $this->storage->hasItem($key);
-            } catch (Exception\InvalidArgumentException $e) {
-                throw new InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
-            } catch (Exception\ExceptionInterface $e) {
-                $hasItem = false;
-            }
+        if ($this->hasDeferredItem($key)) {
+            return true;
         }
 
-        return $hasItem;
+        try {
+            return $this->storage->hasItem($key);
+        } catch (Exception\InvalidArgumentException $e) {
+            throw new InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
+        } catch (Exception\ExceptionInterface $e) {
+            return false;
+        }
     }
 
     /**
@@ -162,7 +178,8 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
         $this->deferred = [];
 
         try {
-            $namespace = $this->storage->getOptions()->getNamespace();
+            $options   = $this->storage->getOptions();
+            $namespace = $options->getNamespace();
             if ($this->storage instanceof ClearByNamespaceInterface && $namespace) {
                 $cleared = $this->storage->clearByNamespace($namespace);
             } else {
@@ -172,6 +189,7 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
             $cleared = false;
         }
 
+        assert(is_bool($cleared));
         return $cleared;
     }
 
@@ -194,13 +212,25 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
         $this->deferred = array_diff_key($this->deferred, array_flip($keys));
 
         try {
-            return null !== $this->storage->removeItems($keys);
+            $result = $this->storage->removeItems($keys);
         } catch (Exception\InvalidArgumentException $e) {
             throw new InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
         } catch (Exception\ExceptionInterface $e) {
+            return false;
         }
 
-        return false;
+        // BC compatibility can be removed in 3.0
+        if (! is_array($result)) {
+            return $result !== null;
+        }
+
+        if ($result === []) {
+            return true;
+        }
+
+        $existing = $this->storage->hasItems($result);
+        $unified  = array_unique($existing);
+        return ! in_array(true, $unified, true);
     }
 
     /**
@@ -212,40 +242,7 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
             throw new InvalidArgumentException('$item must be an instance of ' . CacheItem::class);
         }
 
-        $itemTtl = $item->getTtl();
-
-        // delete expired item
-        if ($itemTtl < 0) {
-            $this->deleteItem($item->getKey());
-            $item->setIsHit(false);
-            return false;
-        }
-
-        $saved   = true;
-        $options = $this->storage->getOptions();
-        $ttl     = $options->getTtl();
-
-        try {
-            // get item value and serialize, if required
-            $value = $item->get();
-
-            // reset TTL on adapter, if required
-            if ($itemTtl > 0) {
-                $options->setTtl($itemTtl);
-            }
-
-            $saved = $this->storage->setItem($item->getKey(), $value);
-            // saved items are a hit? see integration test CachePoolTest::testIsHit()
-            $item->setIsHit($saved);
-        } catch (Exception\InvalidArgumentException $e) {
-            throw new InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
-        } catch (Exception\ExceptionInterface $e) {
-            $saved = false;
-        } finally {
-            $options->setTtl($ttl);
-        }
-
-        return $saved;
+        return $this->saveMultipleItems([$item], $item->getTtl()) === [];
     }
 
     /**
@@ -255,6 +252,11 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
     {
         if (! $item instanceof CacheItem) {
             throw new InvalidArgumentException('$item must be an instance of ' . CacheItem::class);
+        }
+
+        $ttl = $item->getTtl();
+        if ($ttl !== null && $ttl <= 0) {
+            return false;
         }
 
         // deferred items should always be a 'hit' until they expire
@@ -269,22 +271,35 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
      */
     public function commit()
     {
-        $notSaved = [];
-
-        foreach ($this->deferred as &$item) {
-            if (! $this->save($item)) {
-                $notSaved[] = $item;
-            }
+        $groupedByTtl = [];
+        foreach ($this->deferred as $cacheKey => $item) {
+            $itemTtl                = var_export($item->getTtl(), true);
+            $group                  = $groupedByTtl[$itemTtl] ?? [];
+            $group[$cacheKey]       = $item;
+            $groupedByTtl[$itemTtl] = array_values($group);
         }
-        $this->deferred = $notSaved;
+
+        $notSavedItems = [];
+        /**
+         * NOTE: we are not using the array key for the TTL in here as TTL might be `null`.
+         *       Since we stringify the TTL by using `var_export`, the array has string and integer keys.
+         *       Converting a string `null` back to native null-type would be a huge mess.
+         */
+        foreach ($groupedByTtl as $keyValuePairs) {
+            $itemTtl         = current($keyValuePairs)->getTtl();
+            $notSavedItems[] = $this->saveMultipleItems($keyValuePairs, $itemTtl);
+        }
+
+        $this->deferred = array_merge([], ...$notSavedItems);
 
         return empty($this->deferred);
     }
 
     /**
      * Throws exception is storage is not compatible with PSR-6
-     * @param StorageInterface $storage
+     *
      * @throws CacheException
+     * @psalm-assert-if-true StorageInterface&FlushableInterface $storage
      */
     private function validateStorage(StorageInterface $storage)
     {
@@ -332,6 +347,7 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * Returns true if deferred item exists for given key and has not expired
+     *
      * @param string $key
      * @return bool
      */
@@ -346,6 +362,7 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * Throws exception if given key is invalid
+     *
      * @param mixed $key
      * @throws InvalidArgumentException
      */
@@ -357,10 +374,15 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
                 is_string($key) ? $key : gettype($key)
             ));
         }
+
+        if ($this->exceedsMaximumKeyLength($key)) {
+            throw InvalidArgumentException::maximumKeyLengthExceeded($key, $this->maximumKeyLength);
+        }
     }
 
     /**
      * Throws exception if any of given keys is invalid
+     *
      * @param array $keys
      * @throws InvalidArgumentException
      */
@@ -369,5 +391,61 @@ class CacheItemPoolDecorator implements CacheItemPoolInterface
         foreach ($keys as $key) {
             $this->validateKey($key);
         }
+    }
+
+    /**
+     * @psalm-param non-empty-list<CacheItem> $items
+     * @psalm-return array<string,CacheItem>
+     */
+    private function saveMultipleItems(array $items, ?int $itemTtl): array
+    {
+        $keyItemPair = [];
+        foreach ($items as $item) {
+            $keyItemPair[$item->getKey()] = $item;
+        }
+
+        // delete expired item
+        if ($itemTtl < 0) {
+            $this->deleteItems(array_keys($keyItemPair));
+            foreach ($keyItemPair as $cacheItem) {
+                $cacheItem->setIsHit(false);
+            }
+
+            return $keyItemPair;
+        }
+
+        $options = $this->storage->getOptions();
+        $ttl     = $options->getTtl();
+
+        $keyValuePair = [];
+        foreach ($items as $item) {
+            $key = $item->getKey();
+            /** @psalm-suppress MixedAssignment */
+            $keyValuePair[$key] = $item->get();
+        }
+
+        $options->setTtl($itemTtl ?? 0);
+
+        try {
+            $notSavedKeys = $this->storage->setItems($keyValuePair);
+        } catch (Exception\InvalidArgumentException $e) {
+            throw new InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
+        } catch (Exception\ExceptionInterface $e) {
+            $notSavedKeys = array_keys($keyValuePair);
+        } finally {
+            $options->setTtl($ttl);
+        }
+
+        $notSavedItems = [];
+        foreach ($keyItemPair as $key => $item) {
+            if (in_array($key, $notSavedKeys, true)) {
+                $notSavedItems[$key] = $item;
+                continue;
+            }
+
+            $item->setIsHit(true);
+        }
+
+        return $notSavedItems;
     }
 }

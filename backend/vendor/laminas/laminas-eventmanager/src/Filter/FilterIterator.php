@@ -1,15 +1,15 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-eventmanager for the canonical source repository
- * @copyright https://github.com/laminas/laminas-eventmanager/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-eventmanager/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\EventManager\Filter;
 
 use Laminas\EventManager\Exception;
 use Laminas\Stdlib\FastPriorityQueue;
+
+use function get_class;
+use function gettype;
+use function is_callable;
+use function is_object;
+use function sprintf;
 
 /**
  * Specialized priority queue implementation for use with an intercepting
@@ -43,15 +43,15 @@ class FilterIterator extends FastPriorityQueue
      * @param callable $value
      * @param mixed $priority
      * @return void
-     * @throws Exception\InvalidArgumentException for non-callable $value.
+     * @throws Exception\InvalidArgumentException For non-callable $value.
      */
     public function insert($value, $priority)
     {
         if (! is_callable($value)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s can only aggregate callables; received %s',
-                __CLASS__,
-                (is_object($value) ? get_class($value) : gettype($value))
+                self::class,
+                is_object($value) ? get_class($value) : gettype($value)
             ));
         }
         parent::insert($value, $priority);

@@ -1,0 +1,49 @@
+{
+    "name": "laminas/laminas-cache-storage-deprecated-factory",
+    "type": "library",
+    "description": "Temporary storage adapter factory for fluent migration to laminas-cache v3 when working with laminas components which depend on laminas-cache",
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": "^7.3 || ~8.0.0 || ~8.1.0",
+        "laminas/laminas-cache": "^3.0",
+        "laminas/laminas-servicemanager": "^3.7",
+        "laminas/laminas-stdlib": "^3.6",
+        "webmozart/assert": "^1.10"
+    },
+    "require-dev": {
+        "laminas/laminas-cache": "3.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-apcu": "2.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-blackhole": "2.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-ext-mongodb": "2.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-filesystem": "2.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-memcached": "2.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-memory": "2.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-redis": "2.0.x@dev",
+        "laminas/laminas-cache-storage-adapter-session": "2.0.x@dev",
+        "laminas/laminas-coding-standard": "^2.3",
+        "laminas/laminas-serializer": "^2.11",
+        "phpunit/phpunit": "^9.5",
+        "psalm/plugin-phpunit": "^0.16.1",
+        "vimeo/psalm": "^4.12"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.3.99"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Cache\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laminas\\Cache\\": "test/"
+        }
+    },
+    "scripts": {
+        "cs-check": "phpcs -s",
+        "cs-fix": "phpcbf"
+    }
+}

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Storage;
 
 use ArrayObject;
@@ -19,8 +13,6 @@ class Event extends BaseEvent
      * Accept a storage adapter and its parameters.
      *
      * @param  string           $name Event name
-     * @param  StorageInterface $storage
-     * @param  ArrayObject      $params
      */
     public function __construct($name, StorageInterface $storage, ArrayObject $params)
     {
@@ -30,9 +22,10 @@ class Event extends BaseEvent
     /**
      * Set the event target/context
      *
+     * @see    Laminas\EventManager\Event::setTarget()
+     *
      * @param  StorageInterface $target
      * @return Event
-     * @see    Laminas\EventManager\Event::setTarget()
      */
     public function setTarget($target)
     {
@@ -42,9 +35,9 @@ class Event extends BaseEvent
     /**
      * Alias of setTarget
      *
-     * @param  StorageInterface $storage
-     * @return Event
      * @see    Laminas\EventManager\Event::setTarget()
+     *
+     * @return Event
      */
     public function setStorage(StorageInterface $storage)
     {

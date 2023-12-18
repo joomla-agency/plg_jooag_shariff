@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Storage\Adapter;
 
 use ArrayObject;
@@ -16,6 +10,21 @@ use Laminas\EventManager\EventsCapableInterface;
 use Laminas\Stdlib\AbstractOptions;
 use Laminas\Stdlib\ErrorHandler;
 use Traversable;
+
+use function array_change_key_case;
+use function array_reverse;
+use function array_shift;
+use function is_array;
+use function is_int;
+use function iterator_to_array;
+use function preg_match;
+use function preg_replace_callback;
+use function sprintf;
+use function str_replace;
+use function strtolower;
+
+use const CASE_LOWER;
+use const E_WARNING;
 
 /**
  * Unless otherwise marked, all options in this class affect all adapters.
@@ -77,10 +86,9 @@ class AdapterOptions extends AbstractOptions
     /**
      * Adapter using this instance
      *
-     * @param  StorageInterface|null $adapter
      * @return AdapterOptions Provides a fluent interface
      */
-    public function setAdapter(StorageInterface $adapter = null)
+    public function setAdapter(?StorageInterface $adapter = null)
     {
         $this->adapter = $adapter;
         return $this;
@@ -101,12 +109,12 @@ class AdapterOptions extends AbstractOptions
             if ($keyPattern !== '') {
                 ErrorHandler::start(E_WARNING);
                 $result = preg_match($keyPattern, '');
-                $error = ErrorHandler::stop();
+                $error  = ErrorHandler::stop();
                 if ($result === false) {
                     throw new Exception\InvalidArgumentException(sprintf(
                         'Invalid pattern "%s"%s',
                         $keyPattern,
-                        ($error ? ': ' . $error->getMessage() : '')
+                        $error ? ': ' . $error->getMessage() : ''
                     ), 0, $error);
                 }
             }
@@ -279,8 +287,8 @@ class AdapterOptions extends AbstractOptions
      */
     public function toArray()
     {
-        $array = [];
-        $transform = function ($letters) {
+        $array     = [];
+        $transform = static function ($letters): string {
             $letter = array_shift($letters);
             return '_' . strtolower($letter);
         };
@@ -288,7 +296,7 @@ class AdapterOptions extends AbstractOptions
             if ($key === '__strictMode__' || $key === '__prioritizedProperties__') {
                 continue;
             }
-            $normalizedKey = preg_replace_callback('/([A-Z])/', $transform, $key);
+            $normalizedKey         = preg_replace_callback('/([A-Z])/', $transform, $key);
             $array[$normalizedKey] = $value;
         }
         return $array;
@@ -320,7 +328,7 @@ class AdapterOptions extends AbstractOptions
                         __METHOD__,
                         'array',
                         'Traversable',
-                        'Laminas\Stdlib\AbstractOptions'
+                        AbstractOptions::class
                     )
                 );
             }
@@ -330,7 +338,7 @@ class AdapterOptions extends AbstractOptions
             foreach (array_reverse($this->__prioritizedProperties__) as $key) {
                 if (isset($options[$key])) {
                     $options = [$key => $options[$key]] + $options;
-                } elseif (isset($options[($key = str_replace('_', '', $key))])) {
+                } elseif (isset($options[$key = str_replace('_', '', $key)])) {
                     $options = [$key => $options[$key]] + $options;
                 }
             }

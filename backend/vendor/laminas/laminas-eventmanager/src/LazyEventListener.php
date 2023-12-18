@@ -1,14 +1,10 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-eventmanager for the canonical source repository
- * @copyright https://github.com/laminas/laminas-eventmanager/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-eventmanager/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\EventManager;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
+
+use function is_string;
 
 /**
  * Lazy listener instance for use with LazyListenerAggregate.
@@ -24,36 +20,32 @@ use Interop\Container\ContainerInterface;
  */
 class LazyEventListener extends LazyListener
 {
-    /**
-     * @var string Event name to which to attach.
-     */
+    /** @var string Event name to which to attach. */
     private $event;
 
-    /**
-     * @var null|int Priority at which to attach.
-     */
+    /** @var null|int Priority at which to attach. */
     private $priority;
 
     /**
      * @param array $definition
-     * @param ContainerInterface $container
      * @param array $env
      */
     public function __construct(array $definition, ContainerInterface $container, array $env = [])
     {
         parent::__construct($definition, $container, $env);
 
-        if ((! isset($definition['event'])
+        if (
+            ! isset($definition['event'])
             || ! is_string($definition['event'])
-            || empty($definition['event']))
+            || empty($definition['event'])
         ) {
             throw new Exception\InvalidArgumentException(
                 'Lazy listener definition is missing a valid "event" member; cannot create LazyListener'
             );
         }
 
-        $this->event     = $definition['event'];
-        $this->priority  = isset($definition['priority']) ? (int) $definition['priority'] : null;
+        $this->event    = $definition['event'];
+        $this->priority = isset($definition['priority']) ? (int) $definition['priority'] : null;
     }
 
     /**
@@ -65,10 +57,11 @@ class LazyEventListener extends LazyListener
     }
 
     /**
+     * @param int $default
      * @return int
      */
     public function getPriority($default = 1)
     {
-        return (null !== $this->priority) ? $this->priority : $default;
+        return null !== $this->priority ? $this->priority : $default;
     }
 }

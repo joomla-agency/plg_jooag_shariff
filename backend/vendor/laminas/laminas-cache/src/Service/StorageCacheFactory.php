@@ -1,37 +1,28 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Service;
 
-use Interop\Container\ContainerInterface;
 use Laminas\Cache\Storage\StorageInterface;
-use Laminas\Cache\StorageFactory;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Psr\Container\ContainerInterface;
+use Webmozart\Assert\Assert;
 
-/**
- * Storage cache factory.
- */
-class StorageCacheFactory implements FactoryInterface
+use function assert;
+
+final class StorageCacheFactory
 {
-    use PluginManagerLookupTrait;
+    public const CACHE_CONFIGURATION_KEY = 'cache';
 
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container): StorageInterface
     {
-        $this->prepareStorageFactory($container);
-
         $config = $container->get('config');
-        $cacheConfig = isset($config['cache']) ? $config['cache'] : [];
-        return StorageFactory::factory($cacheConfig);
-    }
+        Assert::isArrayAccessible($config);
+        $cacheConfig = $config['cache'] ?? [];
+        Assert::isMap($cacheConfig);
 
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, StorageInterface::class);
+        $factory = $container->get(StorageAdapterFactoryInterface::class);
+        assert($factory instanceof StorageAdapterFactoryInterface);
+        $factory->assertValidConfigurationStructure($cacheConfig);
+
+        return $factory->createFromArrayConfiguration($cacheConfig);
     }
 }

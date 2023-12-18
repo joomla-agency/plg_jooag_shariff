@@ -4,37 +4,41 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
+class ComposerStaticInitc3de3851e3861664b4c17590f1c9cdfa
 {
     public static $files = array (
-        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
+        'c9d07b32a2e02bc0fc582d4f0c1b56cc' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/autoload.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '78d47739fff607f33066e6259f091845' => __DIR__ . '/..' . '/laminas/laminas-cache/autoload/patternPluginManagerPolyfill.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'Webmozart\\Assert\\' => 17,
+        ),
+        'S' => 
+        array (
+            'StellaMaris\\Clock\\' => 18,
+        ),
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
             'Psr\\Container\\' => 14,
+            'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
         ),
         'L' => 
         array (
-            'Laminas\\ZendFrameworkBridge\\' => 28,
             'Laminas\\Stdlib\\' => 15,
             'Laminas\\ServiceManager\\' => 23,
             'Laminas\\EventManager\\' => 21,
+            'Laminas\\Cache\\Storage\\Adapter\\' => 30,
             'Laminas\\Cache\\' => 14,
-        ),
-        'I' => 
-        array (
-            'Interop\\Container\\' => 18,
         ),
         'H' => 
         array (
@@ -49,6 +53,14 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
     );
 
     public static $prefixDirsPsr4 = array (
+        'Webmozart\\Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'StellaMaris\\Clock\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stella-maris/clock/src',
+        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -59,19 +71,24 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
         ),
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Psr\\Clock\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/clock/src',
+        ),
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
-        ),
-        'Laminas\\ZendFrameworkBridge\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src',
         ),
         'Laminas\\Stdlib\\' => 
         array (
@@ -85,13 +102,15 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-eventmanager/src',
         ),
+        'Laminas\\Cache\\Storage\\Adapter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src',
+            1 => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-memory/src',
+        ),
         'Laminas\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-cache/src',
-        ),
-        'Interop\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+            1 => __DIR__ . '/..' . '/laminas/laminas-cache-storage-deprecated-factory/src',
         ),
         'Heise\\Shariff\\' => 
         array (
@@ -112,8 +131,12 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'GuzzleHttp\\BodySummarizer' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/BodySummarizer.php',
+        'GuzzleHttp\\BodySummarizerInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/BodySummarizerInterface.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
         'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
+        'GuzzleHttp\\ClientTrait' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientTrait.php',
         'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',
         'GuzzleHttp\\Cookie\\CookieJarInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php',
         'GuzzleHttp\\Cookie\\FileCookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php',
@@ -125,7 +148,6 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'GuzzleHttp\\Exception\\GuzzleException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/GuzzleException.php',
         'GuzzleHttp\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/InvalidArgumentException.php',
         'GuzzleHttp\\Exception\\RequestException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/RequestException.php',
-        'GuzzleHttp\\Exception\\SeekException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/SeekException.php',
         'GuzzleHttp\\Exception\\ServerException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ServerException.php',
         'GuzzleHttp\\Exception\\TooManyRedirectsException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TooManyRedirectsException.php',
         'GuzzleHttp\\Exception\\TransferException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TransferException.php',
@@ -135,18 +157,23 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'GuzzleHttp\\Handler\\CurlHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlHandler.php',
         'GuzzleHttp\\Handler\\CurlMultiHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php',
         'GuzzleHttp\\Handler\\EasyHandle' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/EasyHandle.php',
+        'GuzzleHttp\\Handler\\HeaderProcessor' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/HeaderProcessor.php',
         'GuzzleHttp\\Handler\\MockHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/MockHandler.php',
         'GuzzleHttp\\Handler\\Proxy' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/Proxy.php',
         'GuzzleHttp\\Handler\\StreamHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/StreamHandler.php',
         'GuzzleHttp\\MessageFormatter' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/MessageFormatter.php',
+        'GuzzleHttp\\MessageFormatterInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/MessageFormatterInterface.php',
         'GuzzleHttp\\Middleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Middleware.php',
         'GuzzleHttp\\Pool' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Pool.php',
         'GuzzleHttp\\PrepareBodyMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php',
         'GuzzleHttp\\Promise\\AggregateException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/AggregateException.php',
         'GuzzleHttp\\Promise\\CancellationException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/CancellationException.php',
         'GuzzleHttp\\Promise\\Coroutine' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Coroutine.php',
+        'GuzzleHttp\\Promise\\Create' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Create.php',
+        'GuzzleHttp\\Promise\\Each' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Each.php',
         'GuzzleHttp\\Promise\\EachPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/EachPromise.php',
         'GuzzleHttp\\Promise\\FulfilledPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/FulfilledPromise.php',
+        'GuzzleHttp\\Promise\\Is' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Is.php',
         'GuzzleHttp\\Promise\\Promise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Promise.php',
         'GuzzleHttp\\Promise\\PromiseInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromiseInterface.php',
         'GuzzleHttp\\Promise\\PromisorInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromisorInterface.php',
@@ -154,18 +181,25 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'GuzzleHttp\\Promise\\RejectionException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectionException.php',
         'GuzzleHttp\\Promise\\TaskQueue' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueue.php',
         'GuzzleHttp\\Promise\\TaskQueueInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueueInterface.php',
+        'GuzzleHttp\\Promise\\Utils' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Utils.php',
         'GuzzleHttp\\Psr7\\AppendStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/AppendStream.php',
         'GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
         'GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
         'GuzzleHttp\\Psr7\\DroppingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/DroppingStream.php',
+        'GuzzleHttp\\Psr7\\Exception\\MalformedUriException' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Exception/MalformedUriException.php',
         'GuzzleHttp\\Psr7\\FnStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/FnStream.php',
+        'GuzzleHttp\\Psr7\\Header' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Header.php',
+        'GuzzleHttp\\Psr7\\HttpFactory' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/HttpFactory.php',
         'GuzzleHttp\\Psr7\\InflateStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/InflateStream.php',
         'GuzzleHttp\\Psr7\\LazyOpenStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LazyOpenStream.php',
         'GuzzleHttp\\Psr7\\LimitStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LimitStream.php',
+        'GuzzleHttp\\Psr7\\Message' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Message.php',
         'GuzzleHttp\\Psr7\\MessageTrait' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/MessageTrait.php',
+        'GuzzleHttp\\Psr7\\MimeType' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/MimeType.php',
         'GuzzleHttp\\Psr7\\MultipartStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/MultipartStream.php',
         'GuzzleHttp\\Psr7\\NoSeekStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/NoSeekStream.php',
         'GuzzleHttp\\Psr7\\PumpStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/PumpStream.php',
+        'GuzzleHttp\\Psr7\\Query' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Query.php',
         'GuzzleHttp\\Psr7\\Request' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Request.php',
         'GuzzleHttp\\Psr7\\Response' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Response.php',
         'GuzzleHttp\\Psr7\\Rfc7230' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc7230.php',
@@ -175,19 +209,19 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'GuzzleHttp\\Psr7\\StreamWrapper' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamWrapper.php',
         'GuzzleHttp\\Psr7\\UploadedFile' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UploadedFile.php',
         'GuzzleHttp\\Psr7\\Uri' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Uri.php',
+        'GuzzleHttp\\Psr7\\UriComparator' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriComparator.php',
         'GuzzleHttp\\Psr7\\UriNormalizer' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriNormalizer.php',
         'GuzzleHttp\\Psr7\\UriResolver' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriResolver.php',
+        'GuzzleHttp\\Psr7\\Utils' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Utils.php',
         'GuzzleHttp\\RedirectMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RedirectMiddleware.php',
         'GuzzleHttp\\RequestOptions' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RequestOptions.php',
         'GuzzleHttp\\RetryMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
         'GuzzleHttp\\TransferStats' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/TransferStats.php',
-        'GuzzleHttp\\UriTemplate' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/UriTemplate.php',
+        'GuzzleHttp\\Utils' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Utils.php',
         'Heise\\Shariff\\Backend' => __DIR__ . '/../..' . '/src/Backend.php',
-        'Heise\\Shariff\\Backend\\AddThis' => __DIR__ . '/../..' . '/src/Backend/AddThis.php',
         'Heise\\Shariff\\Backend\\BackendManager' => __DIR__ . '/../..' . '/src/Backend/BackendManager.php',
         'Heise\\Shariff\\Backend\\Buffer' => __DIR__ . '/../..' . '/src/Backend/Buffer.php',
         'Heise\\Shariff\\Backend\\Facebook' => __DIR__ . '/../..' . '/src/Backend/Facebook.php',
-        'Heise\\Shariff\\Backend\\Flattr' => __DIR__ . '/../..' . '/src/Backend/Flattr.php',
         'Heise\\Shariff\\Backend\\Pinterest' => __DIR__ . '/../..' . '/src/Backend/Pinterest.php',
         'Heise\\Shariff\\Backend\\Reddit' => __DIR__ . '/../..' . '/src/Backend/Reddit.php',
         'Heise\\Shariff\\Backend\\Request' => __DIR__ . '/../..' . '/src/Backend/Request.php',
@@ -198,9 +232,8 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'Heise\\Shariff\\Backend\\Xing' => __DIR__ . '/../..' . '/src/Backend/Xing.php',
         'Heise\\Shariff\\CacheInterface' => __DIR__ . '/../..' . '/src/CacheInterface.php',
         'Heise\\Shariff\\LaminasCache' => __DIR__ . '/../..' . '/src/LaminasCache.php',
-        'Interop\\Container\\ContainerInterface' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/ContainerInterface.php',
-        'Interop\\Container\\Exception\\ContainerException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/ContainerException.php',
-        'Interop\\Container\\Exception\\NotFoundException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/NotFoundException.php',
+        'Laminas\\Cache\\Command\\DeprecatedStorageFactoryConfigurationCheckCommand' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Command/DeprecatedStorageFactoryConfigurationCheckCommand.php',
+        'Laminas\\Cache\\Command\\DeprecatedStorageFactoryConfigurationCheckCommandFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Command/DeprecatedStorageFactoryConfigurationCheckCommandFactory.php',
         'Laminas\\Cache\\ConfigProvider' => __DIR__ . '/..' . '/laminas/laminas-cache/src/ConfigProvider.php',
         'Laminas\\Cache\\Exception\\BadMethodCallException' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Exception/BadMethodCallException.php',
         'Laminas\\Cache\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Exception/ExceptionInterface.php',
@@ -214,76 +247,56 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'Laminas\\Cache\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Exception/UnexpectedValueException.php',
         'Laminas\\Cache\\Exception\\UnsupportedMethodCallException' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Exception/UnsupportedMethodCallException.php',
         'Laminas\\Cache\\Module' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Module.php',
-        'Laminas\\Cache\\PatternFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/PatternFactory.php',
-        'Laminas\\Cache\\PatternPluginManager\\PatternPluginManagerTrait' => __DIR__ . '/..' . '/laminas/laminas-cache/src/PatternPluginManager/PatternPluginManagerTrait.php',
-        'Laminas\\Cache\\PatternPluginManager\\PatternPluginManagerV2Polyfill' => __DIR__ . '/..' . '/laminas/laminas-cache/src/PatternPluginManager/PatternPluginManagerV2Polyfill.php',
-        'Laminas\\Cache\\PatternPluginManager\\PatternPluginManagerV3Polyfill' => __DIR__ . '/..' . '/laminas/laminas-cache/src/PatternPluginManager/PatternPluginManagerV3Polyfill.php',
         'Laminas\\Cache\\Pattern\\AbstractPattern' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/AbstractPattern.php',
+        'Laminas\\Cache\\Pattern\\AbstractStorageCapablePattern' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/AbstractStorageCapablePattern.php',
         'Laminas\\Cache\\Pattern\\CallbackCache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/CallbackCache.php',
         'Laminas\\Cache\\Pattern\\CaptureCache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/CaptureCache.php',
-        'Laminas\\Cache\\Pattern\\ClassCache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/ClassCache.php',
         'Laminas\\Cache\\Pattern\\ObjectCache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/ObjectCache.php',
         'Laminas\\Cache\\Pattern\\OutputCache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/OutputCache.php',
         'Laminas\\Cache\\Pattern\\PatternInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/PatternInterface.php',
         'Laminas\\Cache\\Pattern\\PatternOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/PatternOptions.php',
+        'Laminas\\Cache\\Pattern\\StorageCapableInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Pattern/StorageCapableInterface.php',
         'Laminas\\Cache\\Psr\\CacheItemPool\\CacheException' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/CacheItemPool/CacheException.php',
         'Laminas\\Cache\\Psr\\CacheItemPool\\CacheItem' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/CacheItemPool/CacheItem.php',
         'Laminas\\Cache\\Psr\\CacheItemPool\\CacheItemPoolDecorator' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/CacheItemPool/CacheItemPoolDecorator.php',
         'Laminas\\Cache\\Psr\\CacheItemPool\\InvalidArgumentException' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/CacheItemPool/InvalidArgumentException.php',
+        'Laminas\\Cache\\Psr\\MaximumKeyLengthTrait' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/MaximumKeyLengthTrait.php',
         'Laminas\\Cache\\Psr\\SerializationTrait' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/SerializationTrait.php',
         'Laminas\\Cache\\Psr\\SimpleCache\\SimpleCacheDecorator' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/SimpleCache/SimpleCacheDecorator.php',
         'Laminas\\Cache\\Psr\\SimpleCache\\SimpleCacheException' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/SimpleCache/SimpleCacheException.php',
         'Laminas\\Cache\\Psr\\SimpleCache\\SimpleCacheInvalidArgumentException' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Psr/SimpleCache/SimpleCacheInvalidArgumentException.php',
-        'Laminas\\Cache\\Service\\PatternPluginManagerFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/PatternPluginManagerFactory.php',
-        'Laminas\\Cache\\Service\\PluginManagerLookupTrait' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/PluginManagerLookupTrait.php',
+        'Laminas\\Cache\\Service\\DeprecatedSchemaDetector' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/DeprecatedSchemaDetector.php',
+        'Laminas\\Cache\\Service\\DeprecatedSchemaDetectorInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/DeprecatedSchemaDetectorInterface.php',
+        'Laminas\\Cache\\Service\\StorageAdapterFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StorageAdapterFactory.php',
+        'Laminas\\Cache\\Service\\StorageAdapterFactoryFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StorageAdapterFactoryFactory.php',
+        'Laminas\\Cache\\Service\\StorageAdapterFactoryInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StorageAdapterFactoryInterface.php',
         'Laminas\\Cache\\Service\\StorageAdapterPluginManagerFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StorageAdapterPluginManagerFactory.php',
         'Laminas\\Cache\\Service\\StorageCacheAbstractServiceFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StorageCacheAbstractServiceFactory.php',
         'Laminas\\Cache\\Service\\StorageCacheFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StorageCacheFactory.php',
+        'Laminas\\Cache\\Service\\StoragePluginFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StoragePluginFactory.php',
+        'Laminas\\Cache\\Service\\StoragePluginFactoryFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StoragePluginFactoryFactory.php',
+        'Laminas\\Cache\\Service\\StoragePluginFactoryInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StoragePluginFactoryInterface.php',
         'Laminas\\Cache\\Service\\StoragePluginManagerFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Service/StoragePluginManagerFactory.php',
-        'Laminas\\Cache\\StorageFactory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/StorageFactory.php',
+        'Laminas\\Cache\\StorageFactory' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-deprecated-factory/src/StorageFactory.php',
         'Laminas\\Cache\\Storage\\AdapterPluginManager' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/AdapterPluginManager.php',
         'Laminas\\Cache\\Storage\\Adapter\\AbstractAdapter' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/AbstractAdapter.php',
-        'Laminas\\Cache\\Storage\\Adapter\\AbstractZendServer' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/AbstractZendServer.php',
         'Laminas\\Cache\\Storage\\Adapter\\AdapterOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/AdapterOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Apc' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Apc.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ApcIterator' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ApcIterator.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ApcOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ApcOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Apcu' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Apcu.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ApcuIterator' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ApcuIterator.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ApcuOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ApcuOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\BlackHole' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/BlackHole.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Dba' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Dba.php',
-        'Laminas\\Cache\\Storage\\Adapter\\DbaIterator' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/DbaIterator.php',
-        'Laminas\\Cache\\Storage\\Adapter\\DbaOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/DbaOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ExtMongoDb' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ExtMongoDb.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ExtMongoDbOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ExtMongoDbOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ExtMongoDbResourceManager' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ExtMongoDbResourceManager.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Filesystem' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Filesystem.php',
-        'Laminas\\Cache\\Storage\\Adapter\\FilesystemIterator' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/FilesystemIterator.php',
-        'Laminas\\Cache\\Storage\\Adapter\\FilesystemOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/FilesystemOptions.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem.php',
+        'Laminas\\Cache\\Storage\\Adapter\\FilesystemIterator' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/FilesystemIterator.php',
+        'Laminas\\Cache\\Storage\\Adapter\\FilesystemOptions' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/FilesystemOptions.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem\\AdapterPluginManagerDelegatorFactory' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem/AdapterPluginManagerDelegatorFactory.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem\\ConfigProvider' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem/ConfigProvider.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem\\Exception\\MetadataException' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem/Exception/MetadataException.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem\\Exception\\UnlinkException' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem/Exception/UnlinkException.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem\\FilesystemInteractionInterface' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem/FilesystemInteractionInterface.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem\\LocalFilesystemInteraction' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem/LocalFilesystemInteraction.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Filesystem\\Module' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-filesystem/src/Filesystem/Module.php',
         'Laminas\\Cache\\Storage\\Adapter\\KeyListIterator' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/KeyListIterator.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Memcache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Memcache.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MemcacheOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MemcacheOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MemcacheResourceManager' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MemcacheResourceManager.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Memcached' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Memcached.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MemcachedOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MemcachedOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MemcachedResourceManager' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MemcachedResourceManager.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Memory' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Memory.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MemoryOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MemoryOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MongoDb' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MongoDb.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MongoDbOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MongoDbOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\MongoDbResourceManager' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/MongoDbResourceManager.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Redis' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Redis.php',
-        'Laminas\\Cache\\Storage\\Adapter\\RedisOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/RedisOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\RedisResourceManager' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/RedisResourceManager.php',
-        'Laminas\\Cache\\Storage\\Adapter\\Session' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/Session.php',
-        'Laminas\\Cache\\Storage\\Adapter\\SessionOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/SessionOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\WinCache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/WinCache.php',
-        'Laminas\\Cache\\Storage\\Adapter\\WinCacheOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/WinCacheOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\XCache' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/XCache.php',
-        'Laminas\\Cache\\Storage\\Adapter\\XCacheOptions' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/XCacheOptions.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ZendServerDisk' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ZendServerDisk.php',
-        'Laminas\\Cache\\Storage\\Adapter\\ZendServerShm' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Adapter/ZendServerShm.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Memory' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-memory/src/Memory.php',
+        'Laminas\\Cache\\Storage\\Adapter\\MemoryOptions' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-memory/src/MemoryOptions.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Memory\\AdapterPluginManagerDelegatorFactory' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-memory/src/Memory/AdapterPluginManagerDelegatorFactory.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Memory\\ConfigProvider' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-memory/src/Memory/ConfigProvider.php',
+        'Laminas\\Cache\\Storage\\Adapter\\Memory\\Module' => __DIR__ . '/..' . '/laminas/laminas-cache-storage-adapter-memory/src/Memory/Module.php',
         'Laminas\\Cache\\Storage\\AvailableSpaceCapableInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/AvailableSpaceCapableInterface.php',
         'Laminas\\Cache\\Storage\\Capabilities' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Capabilities.php',
         'Laminas\\Cache\\Storage\\ClearByNamespaceInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/ClearByNamespaceInterface.php',
@@ -295,6 +308,8 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'Laminas\\Cache\\Storage\\IterableInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/IterableInterface.php',
         'Laminas\\Cache\\Storage\\IteratorInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/IteratorInterface.php',
         'Laminas\\Cache\\Storage\\OptimizableInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/OptimizableInterface.php',
+        'Laminas\\Cache\\Storage\\PluginAwareInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/PluginAwareInterface.php',
+        'Laminas\\Cache\\Storage\\PluginCapableInterface' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/PluginCapableInterface.php',
         'Laminas\\Cache\\Storage\\PluginManager' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/PluginManager.php',
         'Laminas\\Cache\\Storage\\Plugin\\AbstractPlugin' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Plugin/AbstractPlugin.php',
         'Laminas\\Cache\\Storage\\Plugin\\ClearExpiredByFactor' => __DIR__ . '/..' . '/laminas/laminas-cache/src/Storage/Plugin/ClearExpiredByFactor.php',
@@ -357,7 +372,6 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'Laminas\\ServiceManager\\Initializer\\InitializerInterface' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/Initializer/InitializerInterface.php',
         'Laminas\\ServiceManager\\PluginManagerInterface' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/PluginManagerInterface.php',
         'Laminas\\ServiceManager\\Proxy\\LazyServiceFactory' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/Proxy/LazyServiceFactory.php',
-        'Laminas\\ServiceManager\\PsrContainerDecorator' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/PsrContainerDecorator.php',
         'Laminas\\ServiceManager\\ServiceLocatorInterface' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/ServiceLocatorInterface.php',
         'Laminas\\ServiceManager\\ServiceManager' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/ServiceManager.php',
         'Laminas\\ServiceManager\\Test\\CommonPluginManagerTrait' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/Test/CommonPluginManagerTrait.php',
@@ -412,24 +426,30 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'Laminas\\Stdlib\\StringWrapper\\MbString' => __DIR__ . '/..' . '/laminas/laminas-stdlib/src/StringWrapper/MbString.php',
         'Laminas\\Stdlib\\StringWrapper\\Native' => __DIR__ . '/..' . '/laminas/laminas-stdlib/src/StringWrapper/Native.php',
         'Laminas\\Stdlib\\StringWrapper\\StringWrapperInterface' => __DIR__ . '/..' . '/laminas/laminas-stdlib/src/StringWrapper/StringWrapperInterface.php',
-        'Laminas\\ZendFrameworkBridge\\Autoloader' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/Autoloader.php',
-        'Laminas\\ZendFrameworkBridge\\ConfigPostProcessor' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/ConfigPostProcessor.php',
-        'Laminas\\ZendFrameworkBridge\\Module' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/Module.php',
-        'Laminas\\ZendFrameworkBridge\\Replacements' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/Replacements.php',
-        'Laminas\\ZendFrameworkBridge\\RewriteRules' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/RewriteRules.php',
         'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',
         'Psr\\Cache\\CacheItemInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemInterface.php',
         'Psr\\Cache\\CacheItemPoolInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemPoolInterface.php',
         'Psr\\Cache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/cache/src/InvalidArgumentException.php',
+        'Psr\\Clock\\ClockInterface' => __DIR__ . '/..' . '/psr/clock/src/ClockInterface.php',
         'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
         'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
+        'Psr\\Http\\Client\\ClientExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/ClientExceptionInterface.php',
+        'Psr\\Http\\Client\\ClientInterface' => __DIR__ . '/..' . '/psr/http-client/src/ClientInterface.php',
+        'Psr\\Http\\Client\\NetworkExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/NetworkExceptionInterface.php',
+        'Psr\\Http\\Client\\RequestExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/RequestExceptionInterface.php',
         'Psr\\Http\\Message\\MessageInterface' => __DIR__ . '/..' . '/psr/http-message/src/MessageInterface.php',
+        'Psr\\Http\\Message\\RequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/RequestFactoryInterface.php',
         'Psr\\Http\\Message\\RequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/RequestInterface.php',
+        'Psr\\Http\\Message\\ResponseFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ResponseFactoryInterface.php',
         'Psr\\Http\\Message\\ResponseInterface' => __DIR__ . '/..' . '/psr/http-message/src/ResponseInterface.php',
+        'Psr\\Http\\Message\\ServerRequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ServerRequestFactoryInterface.php',
         'Psr\\Http\\Message\\ServerRequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/ServerRequestInterface.php',
+        'Psr\\Http\\Message\\StreamFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/StreamFactoryInterface.php',
         'Psr\\Http\\Message\\StreamInterface' => __DIR__ . '/..' . '/psr/http-message/src/StreamInterface.php',
+        'Psr\\Http\\Message\\UploadedFileFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UploadedFileFactoryInterface.php',
         'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
+        'Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
         'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
         'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
@@ -439,20 +459,24 @@ class ComposerStaticInit99571450207ebd3006d9c8e4d57f36df
         'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
         'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
-        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
         'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
         'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
+        'StellaMaris\\Clock\\ClockInterface' => __DIR__ . '/..' . '/stella-maris/clock/src/ClockInterface.php',
+        'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
+        'Webmozart\\Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/webmozart/assert/src/InvalidArgumentException.php',
+        'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit99571450207ebd3006d9c8e4d57f36df::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit99571450207ebd3006d9c8e4d57f36df::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit99571450207ebd3006d9c8e4d57f36df::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc3de3851e3861664b4c17590f1c9cdfa::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc3de3851e3861664b4c17590f1c9cdfa::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc3de3851e3861664b4c17590f1c9cdfa::$classMap;
 
         }, null, ClassLoader::class);
     }

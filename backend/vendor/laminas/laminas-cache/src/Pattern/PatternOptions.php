@@ -1,25 +1,37 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Pattern;
 
 use Laminas\Cache\Exception;
-use Laminas\Cache\Storage\StorageInterface as Storage;
-use Laminas\Cache\StorageFactory;
 use Laminas\Stdlib\AbstractOptions;
 use Traversable;
+
+use function array_intersect;
+use function array_map;
+use function array_unique;
+use function array_values;
+use function get_class;
+use function gettype;
+use function is_dir;
+use function is_object;
+use function is_readable;
+use function is_string;
+use function is_writable;
+use function octdec;
+use function realpath;
+use function rtrim;
+use function sprintf;
+use function stripos;
+
+use const DIRECTORY_SEPARATOR;
+use const PHP_OS;
 
 class PatternOptions extends AbstractOptions
 {
     /**
      * Used by:
-     * - ClassCache
      * - ObjectCache
+     *
      * @var bool
      */
     protected $cacheByDefault = true;
@@ -27,36 +39,16 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - CallbackCache
-     * - ClassCache
      * - ObjectCache
+     *
      * @var bool
      */
     protected $cacheOutput = true;
 
     /**
      * Used by:
-     * - ClassCache
-     * @var null|string
-     */
-    protected $class;
-
-    /**
-     * Used by:
-     * - ClassCache
-     * @var array
-     */
-    protected $classCacheMethods = [];
-
-    /**
-     * Used by:
-     * - ClassCache
-     * @var array
-     */
-    protected $classNonCacheMethods = [];
-
-    /**
-     * Used by:
      * - CaptureCache
+     *
      * @var false|int
      */
     protected $umask = false;
@@ -64,6 +56,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - CaptureCache
+     *
      * @var false|int
      */
     protected $dirPermission = 0700;
@@ -71,6 +64,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - CaptureCache
+     *
      * @var false|int
      */
     protected $filePermission = 0600;
@@ -78,6 +72,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - CaptureCache
+     *
      * @var bool
      */
     protected $fileLocking = true;
@@ -85,6 +80,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - CaptureCache
+     *
      * @var string
      */
     protected $indexFilename = 'index.html';
@@ -92,6 +88,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - ObjectCache
+     *
      * @var null|object
      */
     protected $object;
@@ -99,6 +96,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - ObjectCache
+     *
      * @var bool
      */
     protected $objectCacheMagicProperties = false;
@@ -106,6 +104,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - ObjectCache
+     *
      * @var array
      */
     protected $objectCacheMethods = [];
@@ -113,6 +112,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - ObjectCache
+     *
      * @var null|string
      */
     protected $objectKey;
@@ -120,6 +120,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - ObjectCache
+     *
      * @var array
      */
     protected $objectNonCacheMethods = ['__tostring'];
@@ -127,25 +128,15 @@ class PatternOptions extends AbstractOptions
     /**
      * Used by:
      * - CaptureCache
+     *
      * @var null|string
      */
     protected $publicDir;
 
     /**
-     * Used by:
-     * - CallbackCache
-     * - ClassCache
-     * - ObjectCache
-     * - OutputCache
-     * @var null|Storage
-     */
-    protected $storage;
-
-    /**
      * Constructor
      *
      * @param  array|Traversable|null $options
-     * @return PatternOptions
      * @throws Exception\InvalidArgumentException
      */
     public function __construct($options = null)
@@ -153,7 +144,7 @@ class PatternOptions extends AbstractOptions
         // disable file/directory permissions by default on windows systems
         if (stripos(PHP_OS, 'WIN') === 0) {
             $this->filePermission = false;
-            $this->dirPermission = false;
+            $this->dirPermission  = false;
         }
 
         parent::__construct($options);
@@ -163,7 +154,6 @@ class PatternOptions extends AbstractOptions
      * Set flag indicating whether or not to cache by default
      *
      * Used by:
-     * - ClassCache
      * - ObjectCache
      *
      * @param  bool $cacheByDefault
@@ -179,7 +169,6 @@ class PatternOptions extends AbstractOptions
      * Do we cache by default?
      *
      * Used by:
-     * - ClassCache
      * - ObjectCache
      *
      * @return bool
@@ -194,7 +183,6 @@ class PatternOptions extends AbstractOptions
      *
      * Used by:
      * - CallbackCache
-     * - ClassCache
      * - ObjectCache
      *
      * @param  bool $cacheOutput
@@ -211,7 +199,6 @@ class PatternOptions extends AbstractOptions
      *
      * Used by:
      * - CallbackCache
-     * - ClassCache
      * - ObjectCache
      *
      * @return bool
@@ -222,97 +209,9 @@ class PatternOptions extends AbstractOptions
     }
 
     /**
-     * Set class name
-     *
-     * Used by:
-     * - ClassCache
-     *
-     * @param  string $class
-     * @throws Exception\InvalidArgumentException
-     * @return PatternOptions Provides a fluent interface
-     */
-    public function setClass($class)
-    {
-        if (! is_string($class)) {
-            throw new Exception\InvalidArgumentException('Invalid classname provided; must be a string');
-        }
-        $this->class = $class;
-        return $this;
-    }
-
-    /**
-     * Get class name
-     *
-     * Used by:
-     * - ClassCache
-     *
-     * @return null|string
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
-
-    /**
-     * Set list of method return values to cache
-     *
-     * Used by:
-     * - ClassCache
-     *
-     * @param  array $classCacheMethods
-     * @return PatternOptions Provides a fluent interface
-     */
-    public function setClassCacheMethods(array $classCacheMethods)
-    {
-        $this->classCacheMethods = $this->recursiveStrtolower($classCacheMethods);
-        return $this;
-    }
-
-    /**
-     * Get list of methods from which to cache return values
-     *
-     * Used by:
-     * - ClassCache
-     *
-     * @return array
-     */
-    public function getClassCacheMethods()
-    {
-        return $this->classCacheMethods;
-    }
-
-    /**
-     * Set list of method return values NOT to cache
-     *
-     * Used by:
-     * - ClassCache
-     *
-     * @param  array $classNonCacheMethods
-     * @return PatternOptions Provides a fluent interface
-     */
-    public function setClassNonCacheMethods(array $classNonCacheMethods)
-    {
-        $this->classNonCacheMethods = $this->recursiveStrtolower($classNonCacheMethods);
-        return $this;
-    }
-
-    /**
-     * Get list of methods from which NOT to cache return values
-     *
-     * Used by:
-     * - ClassCache
-     *
-     * @return array
-     */
-    public function getClassNonCacheMethods()
-    {
-        return $this->classNonCacheMethods;
-    }
-
-    /**
      * Set directory permission
      *
-     * @param  false|int $dirPermission
+     * @param  false|int|string|float $dirPermission
      * @throws Exception\InvalidArgumentException
      * @return PatternOptions Provides a fluent interface
      */
@@ -325,7 +224,11 @@ class PatternOptions extends AbstractOptions
                 $dirPermission = (int) $dirPermission;
             }
 
-            // validate
+            /**
+             * Code is untested, applying strict type check might lead to unexpected errors.
+             *
+             * @phpcs:disable SlevomatCodingStandard.Operators.DisallowEqualOperators.DisallowedNotEqualOperator
+             */
             if (($dirPermission & 0700) != 0700) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid directory permission: need permission to execute, read and write by owner'
@@ -353,7 +256,7 @@ class PatternOptions extends AbstractOptions
      * Used by:
      * - CaptureCache
      *
-     * @param  false|int $umask
+     * @param  false|int|string|float $umask
      * @throws Exception\InvalidArgumentException
      * @return PatternOptions Provides a fluent interface
      */
@@ -374,7 +277,7 @@ class PatternOptions extends AbstractOptions
             }
 
             // normalize
-            $umask = $umask & ~0002;
+            $umask &= ~0002;
         }
 
         $this->umask = $umask;
@@ -425,7 +328,7 @@ class PatternOptions extends AbstractOptions
     /**
      * Set file permission
      *
-     * @param  false|int $filePermission
+     * @param  false|int|string|float $filePermission
      * @throws Exception\InvalidArgumentException
      * @return PatternOptions Provides a fluent interface
      */
@@ -438,12 +341,18 @@ class PatternOptions extends AbstractOptions
                 $filePermission = (int) $filePermission;
             }
 
-            // validate
+            /**
+             * Code is untested, applying strict type check might lead to unexpected errors.
+             *
+             * @phpcs:disable SlevomatCodingStandard.Operators.DisallowEqualOperators.DisallowedNotEqualOperator
+             */
             if (($filePermission & 0600) != 0600) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid file permission: need permission to read and write by owner'
                 );
-            } elseif ($filePermission & 0111) {
+            }
+
+            if ($filePermission & 0111) {
                 throw new Exception\InvalidArgumentException(
                     "Invalid file permission: Files shouldn't be executable"
                 );
@@ -671,40 +580,6 @@ class PatternOptions extends AbstractOptions
     }
 
     /**
-     * Set storage adapter
-     *
-     * Required for the following Pattern classes:
-     * - CallbackCache
-     * - ClassCache
-     * - ObjectCache
-     * - OutputCache
-     *
-     * @param  string|array|Storage $storage
-     * @return PatternOptions Provides a fluent interface
-     */
-    public function setStorage($storage)
-    {
-        $this->storage = $this->storageFactory($storage);
-        return $this;
-    }
-
-    /**
-     * Get storage adapter
-     *
-     * Used by:
-     * - CallbackCache
-     * - ClassCache
-     * - ObjectCache
-     * - OutputCache
-     *
-     * @return null|Storage
-     */
-    public function getStorage()
-    {
-        return $this->storage;
-    }
-
-    /**
      * Recursively apply strtolower on all values of an array, and return as a
      * list of unique values
      *
@@ -736,29 +611,5 @@ class PatternOptions extends AbstractOptions
             );
         }
         return $methods;
-    }
-
-    /**
-     * Create a storage object from a given specification
-     *
-     * @param  array|string|Storage $storage
-     * @throws Exception\InvalidArgumentException
-     * @return Storage
-     */
-    protected function storageFactory($storage)
-    {
-        if (is_array($storage)) {
-            $storage = StorageFactory::factory($storage);
-        } elseif (is_string($storage)) {
-            $storage = StorageFactory::adapterFactory($storage);
-        } elseif (! ($storage instanceof Storage)) {
-            throw new Exception\InvalidArgumentException(
-                'The storage must be an instanceof Laminas\Cache\Storage\StorageInterface '
-                . 'or an array passed to Laminas\Cache\Storage::factory '
-                . 'or simply the name of the storage adapter'
-            );
-        }
-
-        return $storage;
     }
 }

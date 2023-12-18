@@ -1,24 +1,20 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Storage\Plugin;
 
 use Laminas\Cache\Storage\Capabilities;
 use Laminas\Cache\Storage\Event;
 use Laminas\Cache\Storage\PostEvent;
+use Laminas\Cache\Storage\StorageInterface;
 use Laminas\EventManager\EventManagerInterface;
 use stdClass;
 
+use function array_keys;
+use function spl_object_hash;
+
 class Serializer extends AbstractPlugin
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $capabilities = [];
 
     /**
@@ -61,7 +57,6 @@ class Serializer extends AbstractPlugin
     /**
      * On read item post
      *
-     * @param  PostEvent $event
      * @return void
      */
     public function onReadItemPost(PostEvent $event)
@@ -77,7 +72,6 @@ class Serializer extends AbstractPlugin
     /**
      * On read items post
      *
-     * @param  PostEvent $event
      * @return void
      */
     public function onReadItemsPost(PostEvent $event)
@@ -93,20 +87,18 @@ class Serializer extends AbstractPlugin
     /**
      * On write item pre
      *
-     * @param  Event $event
      * @return void
      */
     public function onWriteItemPre(Event $event)
     {
-        $serializer = $this->getOptions()->getSerializer();
-        $params     = $event->getParams();
+        $serializer      = $this->getOptions()->getSerializer();
+        $params          = $event->getParams();
         $params['value'] = $serializer->serialize($params['value']);
     }
 
     /**
      * On write items pre
      *
-     * @param  Event $event
      * @return void
      */
     public function onWriteItemsPre(Event $event)
@@ -121,33 +113,30 @@ class Serializer extends AbstractPlugin
     /**
      * On increment item pre
      *
-     * @param  Event $event
      * @return mixed
      */
     public function onIncrementItemPre(Event $event)
     {
+        /** @var StorageInterface $storage */
         $storage  = $event->getTarget();
         $params   = $event->getParams();
         $casToken = null;
         $success  = null;
-        $oldValue = $storage->getItem($params['key'], $success, $casToken);
+        $oldValue = $storage->getItem($params['key'], $success, $casToken) ?? null;
         $newValue = $oldValue + $params['value'];
 
-        if ($success) {
-            $storage->checkAndSetItem($casToken, $params['key'], $oldValue + $params['value']);
-            $result = $newValue;
-        } else {
-            $result = false;
+        $event->stopPropagation(true);
+
+        if ($storage->checkAndSetItem($casToken, $params['key'], $oldValue + $params['value'])) {
+            return $newValue;
         }
 
-        $event->stopPropagation(true);
-        return $result;
+        return false;
     }
 
     /**
      * On increment items pre
      *
-     * @param  Event $event
      * @return mixed
      */
     public function onIncrementItemsPre(Event $event)
@@ -155,7 +144,7 @@ class Serializer extends AbstractPlugin
         $storage       = $event->getTarget();
         $params        = $event->getParams();
         $keyValuePairs = $storage->getItems(array_keys($params['keyValuePairs']));
-        foreach ($params['keyValuePairs'] as $key => & $value) {
+        foreach ($params['keyValuePairs'] as $key => &$value) {
             if (isset($keyValuePairs[$key])) {
                 $keyValuePairs[$key] += $value;
             } else {
@@ -175,33 +164,29 @@ class Serializer extends AbstractPlugin
     /**
      * On decrement item pre
      *
-     * @param  Event $event
      * @return mixed
      */
     public function onDecrementItemPre(Event $event)
     {
+        /** @var StorageInterface $storage */
         $storage  = $event->getTarget();
         $params   = $event->getParams();
         $success  = null;
         $casToken = null;
-        $oldValue = $storage->getItem($params['key'], $success, $casToken);
+        $oldValue = $storage->getItem($params['key'], $success, $casToken) ?? 0;
         $newValue = $oldValue - $params['value'];
 
-        if ($success) {
-            $storage->checkAndSetItem($casToken, $params['key'], $oldValue + $params['value']);
-            $result = $newValue;
-        } else {
-            $result = false;
+        $event->stopPropagation(true);
+        if ($storage->checkAndSetItem($casToken, $params['key'], $newValue)) {
+            return $newValue;
         }
 
-        $event->stopPropagation(true);
-        return $result;
+        return false;
     }
 
     /**
      * On decrement items pre
      *
-     * @param  Event $event
      * @return mixed
      */
     public function onDecrementItemsPre(Event $event)
@@ -229,28 +214,29 @@ class Serializer extends AbstractPlugin
     /**
      * On get capabilities
      *
-     * @param  PostEvent $event
      * @return void
      */
     public function onGetCapabilitiesPost(PostEvent $event)
     {
         $baseCapabilities = $event->getResult();
-        $index = spl_object_hash($baseCapabilities);
+        $index            = spl_object_hash($baseCapabilities);
 
         if (! isset($this->capabilities[$index])) {
             $this->capabilities[$index] = new Capabilities(
                 $baseCapabilities->getAdapter(),
                 new stdClass(), // marker
-                ['supportedDatatypes' => [
-                    'NULL'     => true,
-                    'boolean'  => true,
-                    'integer'  => true,
-                    'double'   => true,
-                    'string'   => true,
-                    'array'    => true,
-                    'object'   => 'object',
-                    'resource' => false,
-                ]],
+                [
+                    'supportedDatatypes' => [
+                        'NULL'     => true,
+                        'boolean'  => true,
+                        'integer'  => true,
+                        'double'   => true,
+                        'string'   => true,
+                        'array'    => true,
+                        'object'   => 'object',
+                        'resource' => false,
+                    ],
+                ],
                 $baseCapabilities
             );
         }

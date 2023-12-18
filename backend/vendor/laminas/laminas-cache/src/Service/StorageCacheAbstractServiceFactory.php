@@ -1,28 +1,22 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Service;
 
-use Interop\Container\ContainerInterface;
-use Laminas\Cache\StorageFactory;
-use Laminas\ServiceManager\AbstractFactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
+use Psr\Container\ContainerInterface;
+use Webmozart\Assert\Assert;
+
+use function assert;
+use function is_array;
 
 /**
  * Storage cache factory for multiple caches.
  */
 class StorageCacheAbstractServiceFactory implements AbstractFactoryInterface
 {
-    use PluginManagerLookupTrait;
+    public const CACHES_CONFIGURATION_KEY = 'caches';
 
-    /**
-     * @var array
-     */
+    /** @var array<string,mixed>|null */
     protected $config;
 
     /**
@@ -30,10 +24,9 @@ class StorageCacheAbstractServiceFactory implements AbstractFactoryInterface
      *
      * @var string
      */
-    protected $configKey = 'caches';
+    protected $configKey = self::CACHES_CONFIGURATION_KEY;
 
     /**
-     * @param ContainerInterface $container
      * @param string $requestedName
      * @return boolean
      */
@@ -43,45 +36,30 @@ class StorageCacheAbstractServiceFactory implements AbstractFactoryInterface
         if (empty($config)) {
             return false;
         }
-        return (isset($config[$requestedName]) && is_array($config[$requestedName]));
-    }
-
-    /**
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @param  string $name
-     * @param  string $requestedName
-     * @return boolean
-     */
-    public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
-    {
-        return $this->canCreate($serviceLocator, $requestedName);
+        return isset($config[$requestedName]) && is_array($config[$requestedName]);
     }
 
     /**
      * Create an object
      *
-     * @param  ContainerInterface $container
      * @param  string             $requestedName
      * @param  null|array         $options
      * @return object
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
-        $this->prepareStorageFactory($container);
-
-        $config = $this->getConfig($container);
-        return StorageFactory::factory($config[$requestedName]);
-    }
-
-    public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
-    {
-        return $this($serviceLocator, $requestedName);
+        $config  = $this->getConfig($container);
+        $factory = $container->get(StorageAdapterFactoryInterface::class);
+        assert($factory instanceof StorageAdapterFactoryInterface);
+        $configForRequestedName = $config[$requestedName] ?? [];
+        Assert::isMap($configForRequestedName);
+        $factory->assertValidConfigurationStructure($configForRequestedName);
+        return $factory->createFromArrayConfiguration($configForRequestedName);
     }
 
     /**
      * Retrieve cache configuration, if any
      *
-     * @param  ContainerInterface $container
      * @return array
      */
     protected function getConfig(ContainerInterface $container)
@@ -96,12 +74,15 @@ class StorageCacheAbstractServiceFactory implements AbstractFactoryInterface
         }
 
         $config = $container->get('config');
+        Assert::isArrayAccessible($config);
         if (! isset($config[$this->configKey])) {
             $this->config = [];
             return $this->config;
         }
 
-        $this->config = $config[$this->configKey];
-        return $this->config;
+        $cacheConfigurations = $config[$this->configKey];
+        Assert::isMap($cacheConfigurations);
+
+        return $this->config = $cacheConfigurations;
     }
 }

@@ -1,48 +1,40 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-cache for the canonical source repository
- * @copyright https://github.com/laminas/laminas-cache/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-cache/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Cache\Pattern;
 
 use Laminas\Cache\Exception;
 use Laminas\Stdlib\ErrorHandler;
 
-class CallbackCache extends AbstractPattern
+use function array_key_exists;
+use function array_values;
+use function is_callable;
+use function is_object;
+use function md5;
+use function ob_end_flush;
+use function ob_get_flush;
+use function ob_implicit_flush;
+use function ob_start;
+use function serialize;
+use function sprintf;
+use function strtolower;
+
+use const PHP_MAJOR_VERSION;
+
+class CallbackCache extends AbstractStorageCapablePattern
 {
-    /**
-     * Set options
-     *
-     * @param  PatternOptions $options
-     * @return CallbackCache Provides a fluent interface
-     * @throws Exception\InvalidArgumentException if missing storage option
-     */
-    public function setOptions(PatternOptions $options)
-    {
-        parent::setOptions($options);
-
-        if (! $options->getStorage()) {
-            throw new Exception\InvalidArgumentException("Missing option 'storage'");
-        }
-        return $this;
-    }
-
     /**
      * Call the specified callback or get the result from cache
      *
      * @param  callable   $callback  A valid callback
      * @param  array      $args      Callback arguments
      * @return mixed Result
-     * @throws Exception\RuntimeException if invalid cached data
+     * @throws Exception\RuntimeException If invalid cached data.
      * @throws \Exception
      */
     public function call($callback, array $args = [])
     {
         $options = $this->getOptions();
-        $storage = $options->getStorage();
+        $storage = $this->getStorage();
         $success = null;
         $key     = $this->generateCallbackKey($callback, $args);
         $result  = $storage->getItem($key, $success);
@@ -51,24 +43,25 @@ class CallbackCache extends AbstractPattern
                 throw new Exception\RuntimeException("Invalid cached data for key '{$key}'");
             }
 
-            echo isset($result[1]) ? $result[1] : '';
+            echo $result[1] ?? '';
             return $result[0];
         }
 
         $cacheOutput = $options->getCacheOutput();
         if ($cacheOutput) {
             ob_start();
-            ob_implicit_flush(0);
+            /**
+             * TODO: remove when PHP 7.4 support is dropped
+             *
+             * @psalm-suppress PossiblyFalseArgument
+             */
+            ob_implicit_flush(PHP_MAJOR_VERSION >= 8 ? false : 0);
         }
 
         // TODO: do not cache on errors using [set|restore]_error_handler
 
         try {
-            if ($args) {
-                $ret = call_user_func_array($callback, $args);
-            } else {
-                $ret = call_user_func($callback);
-            }
+            $ret = $callback(...$args);
         } catch (\Exception $e) {
             if ($cacheOutput) {
                 ob_end_flush();
@@ -122,8 +115,8 @@ class CallbackCache extends AbstractPattern
      *
      * @param  callable   $callback  A valid callback
      * @param  array      $args      Callback arguments
-     * @throws Exception\RuntimeException if callback not serializable
-     * @throws Exception\InvalidArgumentException if invalid callback
+     * @throws Exception\RuntimeException If callback not serializable.
+     * @throws Exception\InvalidArgumentException If invalid callback.
      * @return string
      */
     protected function generateCallbackKey($callback, array $args)
@@ -155,7 +148,7 @@ class CallbackCache extends AbstractPattern
 
             if (! $serializedObject) {
                 throw new Exception\RuntimeException(
-                    sprintf('Cannot serialize callback%s', ($error ? ': ' . $error->getMessage() : '')),
+                    sprintf('Cannot serialize callback%s', $error ? ': ' . $error->getMessage() : ''),
                     0,
                     $error
                 );
@@ -190,7 +183,7 @@ class CallbackCache extends AbstractPattern
 
         if (! $serializedArgs) {
             throw new Exception\RuntimeException(
-                sprintf('Cannot serialize arguments%s', ($error ? ': ' . $error->getMessage() : '')),
+                sprintf('Cannot serialize arguments%s', $error ? ': ' . $error->getMessage() : ''),
                 0,
                 $error
             );
