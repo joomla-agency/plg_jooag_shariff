@@ -3,13 +3,11 @@
 	<fieldset name="section1" label="PLG_JOOAG_SHARIFF_TAB_GENERAL">
 		<field name="services" type="list" class="advancedSelect" label="PLG_JOOAG_SHARIFF_SERVICE" multiple="false">
 			<option value="">PLG_JOOAG_SHARIFF_NO_SERVICE_SELECTED</option>
-			<option value="AddThis">PLG_JOOAG_SHARIFF_ADDTHIS_NAME</option>
 			<option value="Buffer">PLG_JOOAG_SHARIFF_BUFFER_NAME</option>
 			<option value="Diaspora">PLG_JOOAG_SHARIFF_DIASPORA_NAME</option>
 			<option value="Facebook">PLG_JOOAG_SHARIFF_FACEBOOK_NAME</option>
 			<option value="Flattr">PLG_JOOAG_SHARIFF_FLATTR_NAME</option>
 			<option value="Flipboard">PLG_JOOAG_SHARIFF_FLIPBOARD_NAME</option>
-			<option value="GooglePlus">PLG_JOOAG_SHARIFF_GOOGLE_PLUS_NAME</option>
 			<option value="LinkedIn">PLG_JOOAG_SHARIFF_LINKEDIN_NAME</option>
 			<option value="Mail">PLG_JOOAG_SHARIFF_MAIL_NAME</option>
 			<option value="Pinterest">PLG_JOOAG_SHARIFF_PINTEREST_NAME</option>
@@ -33,21 +31,17 @@
 	<fieldset name="section2" label="PLG_JOOAG_SHARIFF_TAB_OPTIONS">
 		<field name="data-twitter-via" class="advancedSelect" showon="services:Twitter" type="input" label="PLG_JOOAG_SHARIFF_TWITTER_VIA"/>
 		<field name="special_facebook_app_secret" showon="services:Facebook" type="input" label="PLG_JOOAG_SHARIFF_FACEBOOK_SECRET"/>
-		<field name="special_facebook_app_id" showon="services:Facebook" type="input" label="PLG_JOOAG_SHARIFF_FACEBOOK_APP_ID"/>
-		<field name="spacer_LABEL_FB_API" type="spacer" showon="services:Facebook" label="PLG_JOOAG_SHARIFF_FACEBOOK_API_DESC" class="alert alert-danger" />
+		<field name="special_facebook_app_id" showon="services:Facebook" type="input" label="PLG_JOOAG_SHARIFF_FACEBOOK_APP_ID" description="PLG_JOOAG_SHARIFF_FACEBOOK_API_DESC" />
+
 		<field name="data-mail-url" showon="services:Mail" type="input" label="PLG_JOOAG_SHARIFF_MAIL_URL" />
 		<field name="data-mail-subject" showon="services:Mail" type="input" label="PLG_JOOAG_SHARIFF_MAIL_SUBJECT" />
-		<field name="data-mail-body" showon="services:Mail" type="input" label="PLG_JOOAG_SHARIFF_MAIL_BODY" />
-		<field type="spacer" showon="services:Mail" name="data-mail-spacer" label="PLG_JOOAG_SHARIFF_MAIL_DESC" class="alert alert-error" />
-		<field name="special_data_info_display" showon="services:Info" label="PLG_JOOAG_SHARIFF_INFO_DISPLAY" type="list" class="btn-group" default="">
-			<option>PLG_JOOAG_SHARIFF_DEFAULT</option>
+		<field name="data-mail-body" showon="services:Mail" type="input" label="PLG_JOOAG_SHARIFF_MAIL_BODY" description="PLG_JOOAG_SHARIFF_MAIL_DESC" />
+		<field name="special_data_info_display_article_id" showon="services:Info" type="input" label="PLG_JOOAG_SHARIFF_INFO_BUTTON_ARTICLE" description="PLG_JOOAG_SHARIFF_INFO_BUTTON_ARTICLE_DESC" />
+		<field name="special_data_info_display" showon="services:Info" label="PLG_JOOAG_SHARIFF_INFO_DISPLAY" type="list" class="btn-group" default="blank" description="PLG_JOOAG_SHARIFF_INFO_DESC">
 			<option value="blank">PLG_JOOAG_SHARIFF_INFO_DISPLAY_BLANK</option>
 			<option value="popup">PLG_JOOAG_SHARIFF_INFO_DISPLAY_POPUP</option>
 			<option value="self">PLG_JOOAG_SHARIFF_INFO_DISPLAY_SELF</option>
 		</field>
-		<field name="special_data_info_url" showon="services:Info" type="modal_article" label="PLG_JOOAG_SHARIFF_INFO_BUTTON_ARTICLE"/>
-		<field type="spacer" showon="services:Info" name="spacer_LABEL_INFO_BUTTON" label="PLG_JOOAG_SHARIFF_INFO_DESC"  class="alert alert-info" />
-		<field type="spacer" showon="services:Info" name="spacer_LABEL_INFO_BUTTON_ATTENTION" label="PLG_JOOAG_SHARIFF_INFO_ATTENTION"  class="alert alert-danger" />
 		<field name="data-flattr-category" showon="services:Flattr" type="input" label="PLG_JOOAG_SHARIFF_FLATTR_CATEGORY"/>
 		<field name="data-flattr-user" showon="services:Flattr" type="input" label="PLG_JOOAG_SHARIFF_FLATTR_USER"/>
 	</fieldset>

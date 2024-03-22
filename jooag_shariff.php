@@ -3,12 +3,16 @@
  * @package    JooAg Shariff
  * @author     Joomla Agentur <Ufuk Avcu> <info@joomla-agentur.de> 
  * @link       https://joomla-agentur.de
- * @copyright  Copyright (c) 2009 - 2018 Joomla-Agentur All rights reserved.
+ * @copyright  Copyright (c) 2009 - 2024 Joomla-Agentur All rights reserved.
  * @license    GNU General Public License version 2 or later;
  * @description A small Plugin to share Social Links without compromising their privacy!
  **/
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Router\Route;
+use Joomla\Component\Content\Site\Helper\RouteHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Table\Table;
 
 /**
  * Class PlgContentJooag_Shariff
@@ -17,6 +21,8 @@ defined('_JEXEC') or die;
  **/
 class plgSystemJooag_Shariff extends JPlugin
 {
+
+
 	/**
 	 * The plugin context
 	 *
@@ -253,18 +259,17 @@ class plgSystemJooag_Shariff extends JPlugin
 		
 		foreach($this->params->get('services') as $service)
 		{
+
 			if($service->special_data_info_display)
 			{
 				$html .= ' data-info-display="' . $service->special_data_info_display . '"';
 			}
-
-			if($service->special_data_info_url)
-			{
-				jimport('joomla.database.table');
-				$item =	JTable::getInstance("content");
-				$item->load($service->special_data_info_url);
-				require_once JPATH_SITE . '/components/com_content/helpers/route.php';
-				$link = JRoute::_(ContentHelperRoute::getArticleRoute($item->id, $item->catid, $item->language));
+		
+			if($service->special_data_info_display_article_id){
+				Table::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_content/src/Table');
+				$table = Table::getInstance('Article', 'Joomla\Component\Content\Administrator\Table', array());
+				$catid = $table->catid;
+				$link = Route::_('index.php?option=com_content&view=article&id=' . $service->special_data_info_display_article_id . '&catid=' . $catid);
 				$html .= ' data-info-url="' . $link . '"';
 			}
 
