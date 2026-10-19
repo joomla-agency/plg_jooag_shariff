@@ -27,7 +27,7 @@ with a message and changes nothing.
 * Services: Bluesky, Buffer, Copy link, Diaspora, Facebook, Flipboard, Info, LinkedIn, Mail, Mastodon (Fediverse),
   Pinterest, Print, Qzone, Reddit, Telegram, Threads, Threema, Tumblr, VK, Weibo, WhatsApp, X (Twitter), XING
 * Themes color, grey, white; horizontal or vertical; icon and text, icon only, icon and count
-* Texts and link titles in 25 languages (from Heise Shariff), following the site language
+* Texts and link titles in 25 languages (from Heise Shariff), following the page language or a fixed one
 * Optional share counter for Buffer, Facebook (app ID and secret), Pinterest, Reddit, VK and XING: your server asks the
   networks through Joomla's own `com_ajax`, only for addresses on your domain(s), and keeps the numbers in Joomla's cache
 * Same HTML and CSS classes as Heise Shariff (`.shariff`, `.shariff-button`, `.share_text`, `.share_count` …),
@@ -43,6 +43,13 @@ with a message and changes nothing.
 * The update server stays the same address, so every installed version finds the update.
 
 ## Changelog
+
+### 8.0.1 (2026-10-19)
+* Share counter only answers for addresses this site rendered buttons for: the page signs its address with the
+  site's secret key, so the counter cannot be used to make the server query the networks for made-up addresses
+* Share counter: one request asks the networks for at most about 10 seconds in all
+* New setting "Button language": the language of the page (default) or a fixed one – idea of pull request #13
+  by @thexmanxyz
 
 ### 8.0.0 (2026-10-19)
 * Rebuilt for Joomla 5 and 6: services/provider.php, namespaced classes, Joomla events – no `J…` class aliases,

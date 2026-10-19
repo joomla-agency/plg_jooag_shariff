@@ -23,6 +23,11 @@ final class Counter
     private const AGENT = 'Mozilla/5.0 (compatible; JooAg Shariff; +https://github.com/joomla-agency/plg_jooag_shariff)';
 
     /**
+     * Seconds after which no further network is asked within one request.
+     */
+    private const TIME_BUDGET = 10;
+
+    /**
      * @param   Registry                         $params        Plugin settings
      * @param   string[]                         $hosts         Allowed host names (lower case, without "www.")
      * @param   string[]                         $services      Services shown on the site (lower case)
@@ -75,8 +80,14 @@ final class Counter
         $timeout = min(30, max(1, (int) $this->params->get('client_timeout', 5)));
         $http    = (new HttpFactory())->getHttp(['userAgent' => self::AGENT]);
         $counts  = [];
+        $start   = microtime(true);
 
         foreach ($services as $service) {
+            // One request may take at most about 10 seconds in all; the remaining networks wait for the next cache period
+            if (microtime(true) - $start > self::TIME_BUDGET) {
+                break;
+            }
+
             try {
                 $count = $this->fetch($http, $service, $url, $timeout);
             } catch (\Throwable) {

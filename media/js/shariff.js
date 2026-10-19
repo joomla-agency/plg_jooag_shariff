@@ -72,7 +72,7 @@
   const format = (count) => (count >= 1000 ? `${Math.round(count / 1000)}k` : String(count));
 
   document.querySelectorAll('.shariff[data-backend-url]').forEach((box) => {
-    const url = `${box.dataset.backendUrl}&url=${encodeURIComponent(box.dataset.url)}`;
+    const url = `${box.dataset.backendUrl}&url=${encodeURIComponent(box.dataset.url)}&sig=${encodeURIComponent(box.dataset.sig || '')}`;
 
     if (!requests.has(url)) {
       requests.set(url, fetch(url, { credentials: 'same-origin', headers: { Accept: 'application/json' } })

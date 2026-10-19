@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>info@joomla-agentur.de</authorEmail>
 	<authorUrl>https://joomla-agentur.de</authorUrl>
-	<version>8.0.0</version>
+	<version>8.0.1</version>
 	<description>PLG_JOOAG_SHARIFF_XML_DESCRIPTION</description>
 	<namespace path="src">JoomlaAgency\Plugin\System\JooagShariff</namespace>
 
@@ -121,6 +121,34 @@
 					<option value="standard">PLG_JOOAG_SHARIFF_STYLE_STANDARD</option>
 					<option value="icon">PLG_JOOAG_SHARIFF_STYLE_ICON</option>
 					<option value="icon-count">PLG_JOOAG_SHARIFF_STYLE_ICON_COUNT</option>
+				</field>
+				<field name="shariff_lang" type="list" default="auto" label="PLG_JOOAG_SHARIFF_LANG" description="PLG_JOOAG_SHARIFF_LANG_DESC">
+					<option value="auto">PLG_JOOAG_SHARIFF_LANG_AUTO</option>
+					<option value="bg">Български (bg)</option>
+					<option value="cs">Čeština (cs)</option>
+					<option value="da">Dansk (da)</option>
+					<option value="de">Deutsch (de)</option>
+					<option value="en">English (en)</option>
+					<option value="es">Español (es)</option>
+					<option value="fi">Suomi (fi)</option>
+					<option value="fr">Français (fr)</option>
+					<option value="hr">Hrvatski (hr)</option>
+					<option value="hu">Magyar (hu)</option>
+					<option value="it">Italiano (it)</option>
+					<option value="ja">日本語 (ja)</option>
+					<option value="ko">한국어 (ko)</option>
+					<option value="nl">Nederlands (nl)</option>
+					<option value="no">Norsk (no)</option>
+					<option value="pl">Polski (pl)</option>
+					<option value="pt">Português (pt)</option>
+					<option value="ro">Română (ro)</option>
+					<option value="ru">Русский (ru)</option>
+					<option value="sk">Slovenčina (sk)</option>
+					<option value="sl">Slovenščina (sl)</option>
+					<option value="sr">Srpski (sr)</option>
+					<option value="sv">Svenska (sv)</option>
+					<option value="tr">Türkçe (tr)</option>
+					<option value="zh">中文 (zh)</option>
 				</field>
 			</fieldset>
 

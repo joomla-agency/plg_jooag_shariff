@@ -146,6 +146,16 @@ final class JooagShariff extends CMSPlugin implements SubscriberInterface
             return;
         }
 
+        // Only addresses this site has rendered buttons for: the page signs its own address (see render())
+        $input = $this->getApplication()->getInput();
+        $url   = (string) $input->get('url', '', 'RAW');
+
+        if (!hash_equals($this->signature($url), (string) $input->get('sig', '', 'CMD'))) {
+            $event->addResult([]);
+
+            return;
+        }
+
         $counter = new Counter(
             $this->params,
             $this->counterHosts(),
@@ -153,7 +163,15 @@ final class JooagShariff extends CMSPlugin implements SubscriberInterface
             Factory::getContainer()->get(CacheControllerFactoryInterface::class)
         );
 
-        $event->addResult($counter->counts($this->getApplication()->getInput()->getString('url', '')));
+        $event->addResult($counter->counts($url));
+    }
+
+    /**
+     * Signature of a page address for the counter, with the site's secret key.
+     */
+    private function signature(string $url): string
+    {
+        return substr(hash_hmac('sha256', 'jooag_shariff|' . $url, (string) $this->getApplication()->get('secret')), 0, 32);
     }
 
     private function forContent(string $context, $item, $params, string $position): string
@@ -301,7 +319,9 @@ final class JooagShariff extends CMSPlugin implements SubscriberInterface
             return '';
         }
 
-        $lang        = strtolower(explode('-', $app->getLanguage()->getTag())[0]);
+        // Language of the button texts: the page's language, or a fixed one (idea of pull request #13 by thexmanxyz)
+        $fixed       = (string) $this->params->get('shariff_lang', 'auto');
+        $lang        = preg_match('/^[a-z]{2}$/', $fixed) ? $fixed : strtolower(explode('-', $app->getLanguage()->getTag())[0]);
         $orientation = $this->choice($options['orientation'] ?? $this->params->get('data_orientation'), self::ORIENTATIONS);
         $theme       = $this->choice($options['theme'] ?? $this->params->get('data_theme'), self::THEMES);
         $style       = $this->choice($options['style'] ?? $this->params->get('data_style'), self::STYLES);
@@ -345,6 +365,7 @@ final class JooagShariff extends CMSPlugin implements SubscriberInterface
         if ((int) $this->params->get('shariff_counter', 0) === 1 && $style !== 'icon'
             && (string) $this->params->get('shariffjs', 'shariff.complete.js') !== '-1') {
             $box['data-backend-url'] = Uri::base(true) . '/index.php?option=com_ajax&plugin=jooag_shariff&group=system&format=json';
+            $box['data-sig']         = $this->signature($page['url']);
         }
 
         $this->useAssets($document);
