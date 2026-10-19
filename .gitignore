@@ -1,1 +1,2 @@
-# Remove not needed docs and fluff
+# Build results
+/dist/

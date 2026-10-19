@@ -1,0 +1,160 @@
+/*!
+ * JooAg Shariff 8 – look of heiseonline/shariff 3.3 (MIT License, Copyright (c) Heise Medien GmbH & Co. KG),
+ * with inline SVG icons (Font Awesome Free 6.7.2, CC BY 4.0) instead of web fonts.
+ */
+.shariff:after,.shariff:before{content:" ";display:table}
+.shariff:after{clear:both}
+.shariff ul{padding:0;margin:0;list-style:none}
+.shariff li{overflow:hidden;padding:0;border:none}
+.shariff li,.shariff li a{height:35px;box-sizing:border-box}
+.shariff li a{color:#fff;position:relative;display:block;text-decoration:none}
+.shariff li a:focus-visible{outline:2px solid #1a1a1a;outline-offset:2px}
+.shariff li .share_count,.shariff li .share_text{font-family:Arial,Helvetica,sans-serif;font-size:12px;vertical-align:middle;line-height:35px}
+.shariff li .shariff-icon{display:inline-block;width:35px;height:20px;vertical-align:middle;fill:currentColor}
+.shariff li .share_count{padding:0 8px;height:33px;position:absolute;top:1px;right:1px}
+.shariff .orientation-horizontal{display:flex;flex-wrap:wrap}
+.shariff .orientation-horizontal li{float:left;flex:none;width:35px;margin-right:3%;margin-bottom:10px}
+.shariff .orientation-horizontal li:last-child{margin-right:0}
+.shariff .orientation-horizontal li .share_text{display:block;text-indent:-9999px;padding-left:3px}
+.shariff .orientation-horizontal li .share_count{display:none}
+.shariff .theme-grey .shariff-button a{background-color:#b0b0b0}
+.shariff .theme-grey .shariff-button .share_count{background-color:#ccc;color:#333}
+.shariff .theme-white .shariff-button{border:1px solid #ddd}
+.shariff .theme-white .shariff-button a{background-color:#fff}
+.shariff .theme-white .shariff-button a:hover{background-color:#eee}
+.shariff .theme-white .shariff-button .share_count{background-color:#fff;color:#999}
+.shariff .orientation-vertical.button-style-icon{min-width:35px}
+.shariff .orientation-vertical.button-style-icon-count{min-width:80px}
+.shariff .orientation-vertical.button-style-standard{min-width:110px}
+.shariff .orientation-vertical li{display:block;width:100%;margin:5px 0}
+.shariff .orientation-vertical.button-style-icon-count li .share_count,.shariff .orientation-vertical.button-style-standard li .share_count{width:24px;text-align:right}
+@media only screen and (min-width:360px){
+.shariff .orientation-horizontal li{margin-right:1.8%}
+.shariff .orientation-horizontal.button-style-icon-count li,.shariff .orientation-horizontal.button-style-standard li{min-width:80px}
+.shariff .orientation-horizontal.button-style-icon-count li .share_count,.shariff .orientation-horizontal.button-style-standard li .share_count{display:block}
+.shariff .orientation-horizontal.button-style-standard li{width:auto;flex:1 0 auto}
+.shariff .orientation-horizontal.button-style-standard.shariff-col-1 li,.shariff .orientation-horizontal.button-style-standard.shariff-col-2 li{min-width:110px;max-width:160px}
+.shariff .orientation-horizontal.button-style-standard.shariff-col-1 li .share_text,.shariff .orientation-horizontal.button-style-standard.shariff-col-2 li .share_text{text-indent:0;display:inline}
+.shariff .orientation-horizontal.button-style-standard.shariff-col-5 li,.shariff .orientation-horizontal.button-style-standard.shariff-col-6 li{flex:none}
+}
+@media only screen and (min-width:600px){
+.shariff li .shariff-icon{height:17px}
+}
+@media only screen and (min-width:640px){
+.shariff .orientation-horizontal.button-style-standard.shariff-col-3 li{min-width:110px;max-width:160px}
+.shariff .orientation-horizontal.button-style-standard.shariff-col-3 li .share_text{text-indent:0;display:inline}
+}
+@media only screen and (min-width:768px){
+.shariff .orientation-horizontal.button-style-standard li{min-width:110px;max-width:160px}
+.shariff .orientation-horizontal.button-style-standard li .share_text{text-indent:0;display:inline}
+.shariff .orientation-horizontal.button-style-standard.shariff-col-5 li,.shariff .orientation-horizontal.button-style-standard.shariff-col-6 li{flex:1 0 auto}
+}
+@media only screen and (min-width:1024px){
+.shariff li,.shariff li a{height:30px}
+.shariff li .shariff-icon{width:30px}
+.shariff li .share_count,.shariff li .share_text{line-height:30px}
+.shariff li .share_count{height:28px}
+}
+/* Icon sizes as in Shariff (font sizes 28/24, 21/18, 17/16 px) */
+.shariff .bluesky .shariff-icon,.shariff .mastodon .shariff-icon,.shariff .qzone .shariff-icon,.shariff .telegram .shariff-icon,.shariff .threads .shariff-icon,.shariff .threema .shariff-icon,.shariff .tumblr .shariff-icon,.shariff .twitter .shariff-icon,.shariff .weibo .shariff-icon,.shariff .whatsapp .shariff-icon{height:24px}
+.shariff .clipboard .shariff-icon,.shariff .mail .shariff-icon,.shariff .print .shariff-icon{height:18px}
+.shariff .diaspora .shariff-icon,.shariff .reddit .shariff-icon{height:16px}
+@media only screen and (min-width:600px){
+.shariff .bluesky .shariff-icon,.shariff .mastodon .shariff-icon,.shariff .qzone .shariff-icon,.shariff .telegram .shariff-icon,.shariff .threads .shariff-icon,.shariff .threema .shariff-icon,.shariff .tumblr .shariff-icon,.shariff .twitter .shariff-icon,.shariff .weibo .shariff-icon,.shariff .whatsapp .shariff-icon{height:20px}
+.shariff .clipboard .shariff-icon,.shariff .mail .shariff-icon,.shariff .print .shariff-icon{height:16px}
+.shariff .diaspora .shariff-icon,.shariff .reddit .shariff-icon{height:15px}
+}
+/* Services */
+.shariff .bluesky a{background-color:#1185fe}
+.shariff .bluesky a:hover{background-color:#3d9bff}
+.shariff .theme-white .bluesky a{color:#1185fe}
+.shariff .buffer a{background-color:#3a3a3a}
+.shariff .buffer a:hover{background-color:#555}
+.shariff .buffer .share_count{color:#3a3a3a;background-color:#ddd}
+.shariff .theme-white .buffer a{color:#3a3a3a}
+.shariff .clipboard a{background-color:#1e418c}
+.shariff .clipboard a:hover{background-color:#2e519c}
+.shariff .clipboard.shariff-copied a{background-color:#2e7d32}
+.shariff .theme-white .clipboard a{color:#999}
+.shariff .diaspora a{background-color:#999}
+.shariff .diaspora a:hover{background-color:#b3b3b3}
+.shariff .theme-white .diaspora a{color:#999}
+.shariff .facebook a{background-color:#3b5998}
+.shariff .facebook a:hover{background-color:#4273c8}
+.shariff .facebook .share_count{color:#183a75;background-color:#99adcf}
+.shariff .theme-white .facebook a{color:#3b5998}
+.shariff .flipboard a{background-color:#e12828}
+.shariff .flipboard a:hover{background-color:#ff2e2e}
+.shariff .theme-white .flipboard a{color:#e12828}
+.shariff .info{border:1px solid #ccc}
+.shariff .info a{color:#666;background-color:#fff}
+.shariff .info a:hover{background-color:#efefef}
+.shariff .info .shariff-icon{width:33px}
+.shariff .info .share_text{display:block!important;text-indent:-9999px!important}
+.shariff .theme-grey .info a{background-color:#fff}
+.shariff .theme-grey .info a:hover{background-color:#efefef}
+.shariff .orientation-vertical .info{width:35px;float:right}
+@media only screen and (min-width:360px){
+.shariff .orientation-horizontal .info{flex:none!important;width:35px;min-width:35px!important}
+}
+@media only screen and (min-width:1024px){
+.shariff .info .shariff-icon{width:23px;height:14px}
+.shariff .orientation-horizontal .info{width:25px;min-width:25px!important}
+.shariff .orientation-vertical .info{width:25px}
+}
+.shariff .linkedin a{background-color:#0077b5}
+.shariff .linkedin a:hover{background-color:#0369a0}
+.shariff .linkedin .share_count{color:#004785;background-color:#33aae8}
+.shariff .theme-white .linkedin a{color:#0077b5}
+.shariff .mail a{background-color:#999}
+.shariff .mail a:hover{background-color:#a8a8a8}
+.shariff .theme-white .mail a{color:#999}
+.shariff .mastodon a{background-color:#6364ff}
+.shariff .mastodon a:hover{background-color:#7d7eff}
+.shariff .theme-white .mastodon a{color:#6364ff}
+.shariff .pinterest a{background-color:#bd081c}
+.shariff .pinterest a:hover{background-color:#d50920}
+.shariff .pinterest .share_count{color:#a31601;background-color:#eda79d}
+.shariff .theme-white .pinterest a{color:#bd081c}
+.shariff .print a{background-color:#999}
+.shariff .print a:hover{background-color:#a8a8a8}
+.shariff .theme-white .print a{color:#999}
+.shariff .qzone a{background-color:#2b82d9}
+.shariff .qzone a:hover{background-color:#398fe6}
+.shariff .qzone .share_count{color:#0174a4;background-color:#2b82d9}
+.shariff .theme-white .qzone a{color:#2b82d9}
+.shariff .reddit a{background-color:#ff4500}
+.shariff .reddit a:hover{background-color:#ff6a33}
+.shariff .reddit .share_count{color:#ff4500;background-color:#ffd5c4}
+.shariff .theme-white .reddit a{color:#ff4500}
+.shariff .telegram a{background-color:#08c}
+.shariff .telegram a:hover{background-color:#007dbb}
+.shariff .theme-white .telegram a{color:#08c}
+.shariff .threads a{background-color:#000}
+.shariff .threads a:hover{background-color:#333}
+.shariff .theme-white .threads a{color:#000}
+.shariff .threema a{background-color:#333}
+.shariff .threema a:hover{background-color:#1f1f1f}
+.shariff .theme-white .threema a{color:#333}
+.shariff .tumblr a{background-color:#36465d}
+.shariff .tumblr a:hover{background-color:#44546b}
+.shariff .theme-white .tumblr a{color:#36465d}
+.shariff .twitter a{background-color:#000}
+.shariff .twitter a:hover{background-color:#333}
+.shariff .twitter .share_count{color:#fff;background-color:#595959}
+.shariff .theme-white .twitter a{color:#000}
+.shariff .vk a{background-color:#5d7fa4}
+.shariff .vk a:hover{background-color:#678eb4}
+.shariff .vk .share_count{color:#55677d;background-color:#fff}
+.shariff .theme-white .vk a{color:#5d7fa4}
+.shariff .weibo a{background-color:#f56770}
+.shariff .weibo a:hover{background-color:#fa7f8a}
+.shariff .weibo .share_count{color:#0174a4;background-color:#f56770}
+.shariff .theme-white .weibo a{color:#f56770}
+.shariff .whatsapp a{background-color:#5cbe4a}
+.shariff .whatsapp a:hover{background-color:#34af23}
+.shariff .theme-white .whatsapp a{color:#5cbe4a}
+.shariff .xing a{background-color:#126567}
+.shariff .xing a:hover{background-color:#29888a}
+.shariff .xing .share_count{color:#15686a;background-color:#4fa5a7}
+.shariff .theme-white .xing a{color:#126567}

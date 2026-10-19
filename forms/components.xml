@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset name="components" label="PLG_JOOAG_SHARIFF_TAB_COMPONENTS">
+		<field name="disallow_components" type="sitecomponents" addfieldprefix="JoomlaAgency\Plugin\System\JooagShariff\Field"
+			   label="PLG_JOOAG_SHARIFF_TAB_COMPONENTS">
+			<option value="">PLG_JOOAG_SHARIFF_SELECT_COMPONENT</option>
+		</field>
+	</fieldset>
+</form>

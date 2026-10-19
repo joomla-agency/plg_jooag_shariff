@@ -1,146 +1,79 @@
-<h1>Joomla 4 Shariff Plugin</h1>
-<h3>The 1-Click-Social-Button with privacy in mind</h3>
-This Joomla 3 Plugin utilizes Heise Shariff Library to enable website users to share their favorite content without compromising their privacy.
+# JooAg Shariff 8 – share buttons with privacy in mind
 
-<b>Help with translation:</b>
-* https://www.transifex.com/jooag/plg_jooag_shariff/
+A Joomla system plugin for share buttons in the look of [Heise Shariff](https://github.com/heiseonline/shariff):
+plain links, rendered on the server. A network only learns about the visit when the visitor clicks –
+no external scripts, no cookies, no tracking, no jQuery, no web fonts.
 
-<b>System Requirements:</b>
-* Joomla 4.x
-* PHP 8.x
+Version 8 is the final, rebuilt version for **Joomla 5 and 6**. It runs without the
+"Behaviour - Backward Compatibility" plugin, so sites can switch it off and move on to Joomla 6.
 
-<b>Plugin features:</b>
-* Joomla Update integration
-* Use this Plugins in your Modules and Articles via {shariff} shorttag
- * Now with shorttag parameter support e.g.  {shariff orientation=vertical theme=white}
-* Languages: English, German, France (Contributed from: Simon | cinnk.com)
-* Restrict the plugin execution to Menu Items or Content Categories
-* Exclude Components
-* Ordering for your Buttons
-* Extended Shariff Backend Cache Handler
-* Plugin settings for Themes, Orientation, Services and much more...
+## Requirements
 
-<b>Shariff Library features:</b>
-* Services: Twitter, Facebook, GooglePlus, LinkedIn, Pinterest, Xing, Whatsapp, Addthis, tumblr
-* Themes: Color, Grey, White
-* Orientation: Horizontal, Vertical
-* Responsive: Yes
-* Shariff Languages: bg, de, en, es, fi, hr, hu, ja, ko, no, pl, pt, ro, ru, sk, sl, sr, sv, tr, zh
-* Counter: Shariff Backend PHP integration
- 
-<b>Changelog:</b>
-- [x] v3.0 - Initial release with Heise Shariff Library and Shariff Backend integration
-- [x] v3.1 - Icon ordering, more bugifixing, facebook api integration, move assets folder to the joomla media folder
-- [x] v3.2 - Custom settings for theme and orienation in every shorttag e.g. {shariff orientation:vertical theme:grey}
-- [x] v3.2.2 - Reduce the size of the plugin (get rid of the Shariff Backend docs and fluff)
-- [x] v3.2.5 - Check the Joomla and PHP Version and prevent the installation if not the requirements met
-- [x] v3.2.8 - New: AddThis button
-- [x] v3.2.9 - New: tumblr button
-- [x] v3.3.0 - Shorttag parameter support for custom icons, backend integration and other shariff settings
-- [x] v3.3.0 - Rearrange the Plugin Options and simplify settings
-- [x] v4.0.0 - Upated Shariff Frontend and Backend Library
-- [x] v5.0.0 - Updated Shariff Frontend and Backend Library
-- [x] v6.0.0 - Joomla 4 Compatibility
+* Joomla 5.0 or later, Joomla 6
+* PHP 8.1 or later
 
-<b>Future plans & Roadmap:</b>
-- [ ] More Options for Info and Print
-- [ ] Override functionality
+Joomla 3 and 4 sites keep JooAg Shariff 6.0.0. The installer of version 8 refuses older Joomla and PHP versions
+with a message and changes nothing.
 
-<h2>Update Instructions:</h2>
-* All previous versions before 5.0.0
-  * You need to uninstall the old Jooag Shariff Plugin
-  * Make a fresh install and do the needed Settings again.
-  * Please, make a note of your current settings. 
+## Features
 
-<h2>Documentation:</h2>
-<h4>First steps</h4>
+* Three ways to place the buttons, each switchable and combinable, each with its own position:
+  1. automatically above and/or below Joomla articles, limited to categories and menu items
+  2. "Show everywhere": above and/or below the output of any component, with menu item assignment
+  3. short tag `{shariff}` in articles and custom modules ("Prepare Content": Yes), per place with
+     `{shariff theme=grey}`, `{shariff orientation=vertical}`, `{shariff style=icon}` – also combined
+* Exclude components (a `{shariff}` from a module is quietly removed there)
+* Every settings tab explains itself (English and German)
+* Services: Bluesky, Buffer, Copy link, Diaspora, Facebook, Flipboard, Info, LinkedIn, Mail, Mastodon (Fediverse),
+  Pinterest, Print, Qzone, Reddit, Telegram, Threads, Threema, Tumblr, VK, Weibo, WhatsApp, X (Twitter), XING
+* Themes color, grey, white; horizontal or vertical; icon and text, icon only, icon and count
+* Texts and link titles in 25 languages (from Heise Shariff), following the site language
+* Optional share counter for Buffer, Facebook (app ID and secret), Pinterest, Reddit, VK and XING: your server asks the
+  networks through Joomla's own `com_ajax`, only for addresses on your domain(s), and keeps the numbers in Joomla's cache
+* Same HTML and CSS classes as Heise Shariff (`.shariff`, `.shariff-button`, `.share_text`, `.share_count` …),
+  so own CSS of existing sites keeps working; stylesheet and script can be switched off
 
-* Install the latest Plugin Version.
-* Login into your Joomla Backend and go to Extensions->Plugins and find the "Jooag Shariff" Plugin.
-* Open the Plugin and activate it.
-* Goto the "Services" Tab and add your needed services.
-* Goto the "Output" Tab and go through the settings.
-=======
+## Update from older versions
 
-* Login into your Joomla Backend and go to Extensions->Plugins and find the "Jooag Shariff" Plugin.
+* **4.x – 7.0.0:** update as usual (Joomla update or upload). All settings stay. The installer removes the
+  former Shariff backend (`plugins/system/jooag_shariff/backend` with its bundled libraries), the old assets
+  (`media/plg_jooag_shariff`) and old files. Services that no longer exist (Flattr, StumbleUpon, Pocket,
+  Tencent Weibo, AddThis) are reported and no longer shown.
+* **3.x:** note your settings, uninstall the old plugin, install version 8 and set it up again.
+* The update server stays the same address, so every installed version finds the update.
 
-* Open the Plugin and activate it.
+## Changelog
 
-* Goto the "Services" Tab and add your needed services.
+### 8.0.0 (2026-10-19)
+* Rebuilt for Joomla 5 and 6: services/provider.php, namespaced classes, Joomla events – no `J…` class aliases,
+  runs without the Backward Compatibility plugin
+* Buttons rendered on the server as plain links with inline SVG icons (Font Awesome Free 6.7.2); Heise Shariff
+  JavaScript, jQuery and the Font Awesome web fonts are gone
+* Share counter rebuilt with Joomla's HTTP client and cache; the public `backend/` folder with Guzzle, Laminas and
+  `shariff.json` (Facebook secret) is gone
+* All output escaped; short tag options are limited to known values (fixes attribute injection through `{shariff …}`)
+* New services: Bluesky, Mastodon (via Share₂Fedi), Threads, Copy link; Twitter is now X
+* Info button links to the chosen article again; the share language follows the current page language
+* "Show everywhere" with both positions no longer repeats the page content
+* Articles and "Show everywhere" have their own position each (above, below, both); the former shared
+  "Output position" is taken over on update
+* "Disallow components" lists the components of the website, third-party ones included (the old list showed
+  the backend's component folders)
+* Explanations on every settings tab; German translation of the settings
 
-* Goto the "Output" Tab and go through the settings.
+### Earlier versions
+* 7.0.0 (2024, not released) – Joomla 5 compatibility attempt, Shariff backend 10.0.0
+* 6.0.0 (2021) – Joomla 4 compatibility
+* 5.0.0 (2019) – updated Shariff frontend and backend
+* 4.0.0 (2018) – updated Shariff frontend and backend
+* 3.x (2014 – 2017) – Joomla 3 plugin with Heise Shariff and Shariff backend
 
-* Goto the "Counter" Tab and activate the Counter, if you like to see the count of the shares.
+## Credits and licenses
 
-<h4>Share Counter:</h4>
-It's really important for the counter to use the url only with www or non-www.
-<h6>To redirect www to non-www do the following steps:</h6>
-<ol>
-<li>Rename the htaccess.txt in your joomla root folder to .htaccess</li>
-<li>Add following lines in the end of the .htaccess file</li>
-<pre>
-# www to non-www
-RewriteBase /
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-</pre>
-or
-<pre>
-# non-www to www
-RewriteCond %{HTTP_HOST} !^www\.
-RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
-</pre>
-<li>At least you need to open this plugin and save it again!</li>
-</code>
-</ol>
-</p>
-
-<h4>Use this Plugin as a Shariff Joomla Modul</h4>
-
-* You can put into your content or "Custom Html" module the following shortcode and set the Option "Prepare Content" to yes!
-
- ```
-{shariff}
-```
-
-* You can also override the Global Plugin Settings for theme and orientation like this:
-
-```
- {shariff theme=color}
- {shariff theme=grey}
- {shariff theme=white}
- {shariff orientation=horizontal}
- {shariff orientation=vertical}
-```
-
-* You can combine this tags, too:
-
-```
- {shariff theme=color orientation=horizontal}
- {shariff theme=white orientation=vertical}
-```
-
-* Theme variables
- * color
- * grey
- * white
-* Orientation variables
- * horizontal
- * vertical
- 
-<h2>Credits:</h2>
-Developed by https://joomla-agentur.de
-
-Thanks Heise.de for this solution  https://github.com/heiseonline/shariff
-
-Thanks Joomla! our lovely CMS https://joomla.org
-
-and for Joomla! Joomla User Group Hamburg https://jug-hamburg.de/ (the main reason for this plugin :-)
-
-<h2>Many thanks for your help and support!</h2>
-
-* David Jardin - https://www.djumla.de/
-* Robert Deutz - https://rdbs.de/
-* Tobias Zulauf - https://www.jah-tz.de/
-* Viktor Vogel - https://joomla-extensions.kubik-rubik.de/
-* Yves Hoppe - https://compojoom.com/
+* Plugin: GNU General Public License version 2 or later, see LICENSE – developed by
+  [Joomla Agentur](https://joomla-agentur.de)
+* Look, button texts and share addresses follow [Heise Shariff](https://github.com/heiseonline/shariff)
+  (MIT License, Copyright (c) Heise Medien GmbH & Co. KG)
+* Icons: [Font Awesome Free](https://fontawesome.com) 6.7.2 by Fonticons, Inc., CC BY 4.0
+* Thanks to Heise for Shariff, to the Joomla community and the Joomla User Group Hamburg, and to David Jardin,
+  Robert Deutz, Tobias Zulauf, Viktor Vogel and Yves Hoppe for help and support over the years

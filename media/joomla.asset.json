@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "plg_system_jooag_shariff",
+  "version": "8.0.0",
+  "description": "JooAg Shariff share buttons",
+  "license": "GPL-2.0-or-later",
+  "assets": [
+    {
+      "name": "plg_system_jooag_shariff",
+      "type": "style",
+      "uri": "plg_system_jooag_shariff/shariff.css"
+    },
+    {
+      "name": "plg_system_jooag_shariff",
+      "type": "script",
+      "uri": "plg_system_jooag_shariff/shariff.js",
+      "attributes": {
+        "defer": true
+      }
+    }
+  ]
+}
