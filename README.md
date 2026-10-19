@@ -4,16 +4,20 @@ A Joomla system plugin for share buttons in the look of [Heise Shariff](https://
 plain links, rendered on the server. A network only learns about the visit when the visitor clicks –
 no external scripts, no cookies, no tracking, no jQuery, no web fonts.
 
-Version 8 is the final, rebuilt version for **Joomla 5 and 6**. It runs without the
-"Behaviour - Backward Compatibility" plugin, so sites can switch it off and move on to Joomla 6.
+Version 8 is rebuilt for **Joomla 5 and 6**. It runs without the "Behaviour - Backward Compatibility" plugin,
+so sites can switch it off and move on to Joomla 6.
+
+**8.0.1 is the last regular version.** From now on JooAg Shariff gets security fixes only, for Joomla 5 and 6.
+No version for Joomla 7 is planned – the plugin ends there.
 
 ## Requirements
 
 * Joomla 5.0 or later, Joomla 6
 * PHP 8.1 or later
 
-Joomla 3 and 4 sites keep JooAg Shariff 6.0.0. The installer of version 8 refuses older Joomla and PHP versions
-with a message and changes nothing.
+Joomla 3 and 4 sites keep JooAg Shariff 6.0.0, which is affected by the issues fixed in 8.0.x – see
+[Security](#security) for what to do there. The installer of version 8 refuses older Joomla and PHP versions with
+a message and changes nothing.
 
 ## Features
 
@@ -40,11 +44,18 @@ with a message and changes nothing.
   (`media/plg_jooag_shariff`) and old files. Services that no longer exist (Flattr, StumbleUpon, Pocket,
   Tencent Weibo, AddThis) are reported and no longer shown.
 * **3.x:** note your settings, uninstall the old plugin, install version 8 and set it up again.
-* The update server stays the same address, so every installed version finds the update.
+* The update server stays the same address, so every Joomla 5 and 6 site finds the update.
+
+## Security
+
+8.0.1 is a security release (level medium) for all earlier versions: the public Shariff backend of 4.0.0 – 7.0.0
+is gone since 8.0.0, and since 8.0.1 the share counter only answers for addresses the site signed itself.
+Details, what to do on Joomla 3 and 4, and how to report a vulnerability privately: [SECURITY.md](.github/SECURITY.md).
 
 ## Changelog
 
 ### 8.0.1 (2026-10-19)
+* Security release, last regular version: from now on security fixes only, ending with Joomla 7
 * Share counter only answers for addresses this site rendered buttons for: the page signs its address with the
   site's secret key, so the counter cannot be used to make the server query the networks for made-up addresses
 * Share counter: one request asks the networks for at most about 10 seconds in all
